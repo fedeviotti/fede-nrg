@@ -31,9 +31,7 @@ const NavigationBar = ({showHomeButton, children}: Props) => {
           </Button>
         </ButtonGroup>
       </Flex>
-      <Flex backgroundColor="green.300" width="60%" height="100%">
-        {children}
-      </Flex>
+      {children}
     </Flex>
   )
 }
