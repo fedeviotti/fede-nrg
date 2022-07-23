@@ -25,9 +25,11 @@ import { supabase } from '../lib/SupabaseClient';
 import { Session } from "@supabase/supabase-js";
 import Auth from '../components/Auth'
 import Account from '../components/Account'
+import {Button, useColorMode} from "@chakra-ui/react";
 
 export default function Home() {
-  const [session, setSession] = useState<Session | null>(null)
+  const [session, setSession] = useState<Session | null>(null);
+  const { colorMode, toggleColorMode } = useColorMode()
 
   useEffect(() => {
     setSession(supabase.auth.session())
@@ -38,8 +40,15 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? <Auth /> : <Account key={session?.user?.id} session={session} />}
-    </div>
+    <>
+      <header>
+        <Button onClick={toggleColorMode}>
+          Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+        </Button>
+      </header>
+      <div className="container" style={{ padding: '50px 0 100px 0' }}>
+        {!session ? <Auth /> : <Account key={session?.user?.id} session={session} />}
+      </div>
+    </>
   )
 }
