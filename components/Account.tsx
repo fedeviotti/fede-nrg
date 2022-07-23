@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/SupabaseClient';
 import { Session } from "@supabase/supabase-js";
+import {Button, ButtonGroup, Flex, Input} from "@chakra-ui/react";
 
 type Props = {
   session: Session | null;
@@ -75,45 +76,43 @@ export default function Account({ session }: Props) {
   }
 
   return (
-    <div className="form-widget">
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session?.user?.email} disabled />
-      </div>
-      <div>
-        <label htmlFor="username">Name</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
+    <Flex direction="column" gap="8px">
+      <Input
+        id="email"
+        type="text"
+        placeholder='Email'
+        value={session?.user?.email}
+        disabled
+      />
+      <Input
+        id="username"
+        type="text"
+        placeholder='Username'
+        value={username || ''}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <Input
+        id="website"
+        type="website"
+        placeholder='Website'
+        value={website || ''}
+        onChange={(e) => setWebsite(e.target.value)}
+      />
 
-      <div>
-        <button
-          className="button block primary"
-          onClick={() => updateProfile({ username, website, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
+      <Flex justifyContent="center">
+        <ButtonGroup>
+          <Button
+            onClick={() => updateProfile({ username, website, avatar_url })}
+            disabled={loading}
+          >
+            {loading ? 'Loading ...' : 'Update'}
+          </Button>
 
-      <div>
-        <button className="button block" onClick={() => supabase.auth.signOut()}>
-          Sign Out
-        </button>
-      </div>
-    </div>
+          <Button onClick={() => supabase.auth.signOut()}>
+            Sign Out
+          </Button>
+        </ButtonGroup>
+      </Flex>
+    </Flex>
   )
 }
