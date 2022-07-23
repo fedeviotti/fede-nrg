@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../lib/SupabaseClient';
-import {Box, Button, Flex, Heading, Input, Text} from "@chakra-ui/react";
+import { Button, Flex, Heading, Input, Text} from "@chakra-ui/react";
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
@@ -20,26 +20,24 @@ export default function Auth() {
   }
 
   return (
-    <Flex backgroundColor="red.400">
-      <Box>
-        <Heading>Supabase + Next.js</Heading>
-        <Text>Sign in via magic link with your email below</Text>
-        <Input
-          type="email"
-          placeholder="Your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Button
-          onClick={(e) => {
-            e.preventDefault()
-            handleLogin(email)
-          }}
-          disabled={loading}
-        >
-          {loading ? 'Loading' : 'Send magic link'}
-        </Button>
-      </Box>
+    <Flex direction="column" gap="8px">
+      <Heading>Supabase + Next.js</Heading>
+      <Text>Sign in via magic link with your email below</Text>
+      <Input
+        type="email"
+        placeholder="Your email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <Button
+        onClick={(e) => {
+          e.preventDefault()
+          handleLogin(email)
+        }}
+        disabled={loading}
+      >
+        {loading ? 'Loading' : 'Send magic link'}
+      </Button>
     </Flex>
   )
 }

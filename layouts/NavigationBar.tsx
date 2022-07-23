@@ -3,11 +3,12 @@ import { Button, ButtonGroup, Flex, Heading, useColorMode} from "@chakra-ui/reac
 import NextLink from "next/link";
 
 type Props = {
-  showHomeButton?: boolean,
+  shouldShowHomeButton?: boolean,
+  shouldShowFeatures?: boolean,
   children: React.ReactNode
 }
 
-const NavigationBar = ({showHomeButton, children}: Props) => {
+const NavigationBar = ({shouldShowHomeButton, shouldShowFeatures, children}: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -21,17 +22,21 @@ const NavigationBar = ({showHomeButton, children}: Props) => {
       >
         <Heading>Fede Nrg Site</Heading>
         <ButtonGroup>
-          {showHomeButton && (
+          {shouldShowHomeButton && (
             <NextLink href='/' passHref>
               <Button as="a">Home</Button>
             </NextLink>
           )}
-          <NextLink href='/garage' passHref>
-            <Button as="a">Garage</Button>
-          </NextLink>
-          <NextLink href='#' passHref>
-            <Button as="a">Memory</Button>
-          </NextLink>
+          {shouldShowFeatures && (
+            <>
+              <NextLink href='/garage' passHref>
+                <Button as="a">Garage</Button>
+              </NextLink>
+              <NextLink href='#' passHref>
+              <Button as="a">Memory</Button>
+              </NextLink>
+            </>
+          )}
           <Button onClick={toggleColorMode}>
             Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
           </Button>

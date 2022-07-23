@@ -11,7 +11,7 @@ const Garage = () => {
         <meta name="description" content="Garage manager application" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavigationBar showHomeButton>
+      <NavigationBar shouldShowHomeButton shouldShowFeatures>
         <Box>Garage Page</Box>
       </NavigationBar>
     </>
