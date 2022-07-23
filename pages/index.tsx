@@ -27,7 +27,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavigationBar>
-        <Flex direction="column" gap="8px" width="60%" height="100%" pt="32px">
+        <Flex direction="column" gap="8px" width="60%" height="100%">
           <Box>
             {!session ? <Auth /> : <Account key={session?.user?.id} session={session} />}
           </Box>

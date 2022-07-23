@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, ButtonGroup, Flex, Heading, useColorMode} from "@chakra-ui/react";
+import { Button, ButtonGroup, Flex, Heading, useColorMode} from "@chakra-ui/react";
 import NextLink from "next/link";
 
 type Props = {
@@ -11,7 +11,7 @@ const NavigationBar = ({showHomeButton, children}: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Flex direction="column" alignItems="center" width="100%" height="100vh">
+    <Flex direction="column" alignItems="center" width="100vw" height="100vh">
       <Flex
         width="100%"
         px="24px"
@@ -37,7 +37,7 @@ const NavigationBar = ({showHomeButton, children}: Props) => {
           </Button>
         </ButtonGroup>
       </Flex>
-      {children}
+      <Flex width="100%" justifyContent="center" pt="32px">{children}</Flex>
     </Flex>
   )
 }
