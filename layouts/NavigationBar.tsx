@@ -20,7 +20,7 @@ const NavigationBar = ({shouldShowHomeButton, shouldShowFeatures, children}: Pro
         justifyContent="space-between"
         boxShadow={colorMode === "light" ? "rgba(0, 0, 0, .05) 0px 1px 2px" : "rgba(255, 255, 255, .1) 0px 1px 2px"}
       >
-        <Heading>Fede Nrg Site</Heading>
+        <Heading as="h1" fontWeight="thin" fontSize="xx-large" letterSpacing="wide">Fede Nrg Site</Heading>
         <ButtonGroup>
           {shouldShowHomeButton && (
             <NextLink href='/' passHref>

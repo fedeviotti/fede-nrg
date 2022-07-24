@@ -4,6 +4,7 @@ specifiers:
   '@chakra-ui/react': ^2.2.4
   '@emotion/react': ^11
   '@emotion/styled': ^11
+  '@fontsource/poppins': ^4.5.8
   '@supabase/supabase-js': ^1.35.4
   '@types/node': 18.0.6
   '@types/react': 18.0.15
@@ -20,6 +21,7 @@ dependencies:
   '@chakra-ui/react': 2.2.4_9a13a6a5ca9ce4ef7f7c54e99b24fd07
   '@emotion/react': 11.9.3_d9efaa4a57b9ddc48121b447e3437c81
   '@emotion/styled': 11.9.3_9f060d9dc2b4fcb488bb7788ce42d0cb
+  '@fontsource/poppins': 4.5.8
   '@supabase/supabase-js': 1.35.4
   framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
   next: 12.2.3_react-dom@18.2.0+react@18.2.0
@@ -1035,6 +1037,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fontsource/poppins/4.5.8:
+    resolution: {integrity: sha512-HE9yLDxYJEcxooVrYvvEhtyxaYU32hQIx1+npKegVefceE0l0zi0ePqKWWxYxkFpyy6WuZSQ+9rai3INnYKEJA==}
+    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
