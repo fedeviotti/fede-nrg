@@ -12,3 +12,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: 999999s !important;
+}
