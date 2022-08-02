@@ -1,13 +1,13 @@
-import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
+import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
 const fonts = {
-  heading: `'Poppins', sans-serif`,
-  body: `'Poppins', sans serif`,
+  heading: "'Poppins', sans-serif",
+  body: "'Poppins', sans serif",
 
 };
 
 const activeLabelStyles = {
-  transform: "scale(0.85) translateY(-24px)"
+  transform: "scale(0.85) translateY(-24px)",
 };
 
 const components = {
@@ -17,11 +17,11 @@ const components = {
         container: {
           _focusWithin: {
             label: {
-              ...activeLabelStyles
-            }
+              ...activeLabelStyles,
+            },
           },
           "input:not(:placeholder-shown) + label, .chakra-select__wrapper + label": {
-            ...activeLabelStyles
+            ...activeLabelStyles,
           },
           label: {
             top: 0,
@@ -33,19 +33,19 @@ const components = {
             mx: 3,
             px: 1,
             my: 2,
-            transformOrigin: "left top"
-          }
-        }
-      }
-    }
-  }
-}
+            transformOrigin: "left top",
+          },
+        },
+      },
+    },
+  },
+};
 
 const config: ThemeConfig = {
-  initialColorMode: 'light',
+  initialColorMode: "light",
   useSystemColorMode: false,
-}
+};
 
 const theme = extendTheme({ config, fonts, components });
 
-export default theme
+export default theme;

@@ -1,14 +1,16 @@
 import React from "react";
-import { Button, ButtonGroup, Flex, Heading, useColorMode} from "@chakra-ui/react";
+import {
+  Button, ButtonGroup, Flex, Heading, useColorMode,
+} from "@chakra-ui/react";
 import NextLink from "next/link";
 
 type Props = {
-  shouldShowHomeButton?: boolean,
-  shouldShowFeatures?: boolean,
-  children: React.ReactNode
-}
+  shouldShowHomeButton?: boolean;
+  shouldShowFeatures?: boolean;
+  children: React.ReactNode;
+};
 
-const NavigationBar = ({shouldShowHomeButton, shouldShowFeatures, children}: Props) => {
+const NavigationBar = ({ shouldShowHomeButton, shouldShowFeatures, children }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -23,28 +25,30 @@ const NavigationBar = ({shouldShowHomeButton, shouldShowFeatures, children}: Pro
         <Heading as="h1" fontWeight="thin" fontSize="xx-large" letterSpacing="wide">Fede Nrg Site</Heading>
         <ButtonGroup>
           {shouldShowHomeButton && (
-            <NextLink href='/' passHref>
+            <NextLink href="/" passHref>
               <Button as="a">Home</Button>
             </NextLink>
           )}
           {shouldShowFeatures && (
             <>
-              <NextLink href='/garage' passHref>
+              <NextLink href="/garage" passHref>
                 <Button as="a">Garage</Button>
               </NextLink>
-              <NextLink href='#' passHref>
-              <Button as="a">Memory</Button>
+              <NextLink href="#" passHref>
+                <Button as="a">Memory</Button>
               </NextLink>
             </>
           )}
           <Button onClick={toggleColorMode}>
-            Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+            Toggle
+            {" "}
+            {colorMode === "light" ? "Dark" : "Light"}
           </Button>
         </ButtonGroup>
       </Flex>
       <Flex width="100%" justifyContent="center" pt="32px">{children}</Flex>
     </Flex>
-  )
-}
+  );
+};
 
 export default NavigationBar;
