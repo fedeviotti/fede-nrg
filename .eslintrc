@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "@fedeviotti/eslint-config",
+    "@fedeviotti/eslint-config/typescript",
+    "@fedeviotti/eslint-config/hooks",
+    "@fedeviotti/eslint-config/testing"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/*.stories.tsx",
+          "src/tests/**",
+          "**/setupTests.ts"
+        ]
+      }
+    ]
+  }
+}
