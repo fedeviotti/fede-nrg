@@ -9,7 +9,7 @@ type Props = {
   session: Session | null;
 };
 
-export const Account = ({ session }: Props) => {
+const Account = ({ session }: Props) => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState<string | null>(null);
   const [website, setWebsite] = useState<string | null>(null);

@@ -19,7 +19,7 @@ type AuthFormValues = {
   email: string;
 };
 
-export const Auth = () => {
+const Auth = () => {
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async (submittedValues: AuthFormValues) => {
