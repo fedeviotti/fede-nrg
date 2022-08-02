@@ -3,7 +3,8 @@
     "@fedeviotti/eslint-config",
     "@fedeviotti/eslint-config/typescript",
     "@fedeviotti/eslint-config/hooks",
-    "@fedeviotti/eslint-config/testing"
+    "@fedeviotti/eslint-config/testing",
+    "next/core-web-vitals"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
