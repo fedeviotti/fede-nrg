@@ -1,4 +1,5 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 
 const fonts = {
   heading: "'Poppins', sans-serif",
@@ -41,11 +42,21 @@ const components = {
   },
 };
 
+const styles = {
+  global: (props: any) => ({
+    "#email-label": {
+      backgroundColor: mode("white", "gray.800")(props),
+    },
+  }),
+};
+
 const config: ThemeConfig = {
   initialColorMode: "light",
   useSystemColorMode: false,
 };
 
-const theme = extendTheme({ config, fonts, components });
+const theme = extendTheme({
+  config, fonts, components, styles,
+});
 
 export default theme;
