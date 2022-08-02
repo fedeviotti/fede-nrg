@@ -43,7 +43,7 @@ const Auth = () => {
   });
 
   return (
-    <Flex direction="column" gap="8px">
+    <Flex direction="column" gap="16px">
       <Heading>Supabase + Next.js</Heading>
       <Text>Sign in via magic link with your email below</Text>
 
