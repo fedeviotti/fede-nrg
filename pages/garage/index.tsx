@@ -4,8 +4,9 @@ import Head from "next/head";
 import useSWR from "swr";
 import NavigationBar from "../../layouts/NavigationBar";
 import { supabase } from "../../lib/SupabaseClient";
+import { definitions } from "../../types/supabase";
 
-const fetcher = async () => supabase.from("vehicles").select("*").single();
+const fetcher = async () => supabase.from<definitions["vehicles"]>("vehicles").select("*").single();
 
 const Garage = () => {
   const { data, error } = useSWR("/api/vehicles", fetcher);
@@ -24,7 +25,8 @@ const Garage = () => {
         <Box display="flex" flexDirection="column" gap="16px">
           <Box>Garage Page</Box>
           {/* <pre>{JSON.stringify(data.body, null, 2)}</pre> */}
-          <Box>{data.body.name}</Box>
+          <Box>{data.body?.name}</Box>
+          <Box>{data.data?.name}</Box>
         </Box>
       </NavigationBar>
     </>
