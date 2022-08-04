@@ -1,19 +1,34 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
+import useSWR from "swr";
 import NavigationBar from "../../layouts/NavigationBar";
+import { supabase } from "../../lib/SupabaseClient";
 
-const Garage = () => (
-  <>
-    <Head>
-      <title>Garage manager</title>
-      <meta name="description" content="Garage manager application" />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <NavigationBar shouldShowHomeButton shouldShowFeatures>
-      <Box>Garage Page</Box>
-    </NavigationBar>
-  </>
-);
+const fetcher = async () => supabase.from("vehicles").select("*").single();
+
+const Garage = () => {
+  const { data, error } = useSWR("/api/vehicles", fetcher);
+
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+
+  return (
+    <>
+      <Head>
+        <title>Garage manager</title>
+        <meta name="description" content="Garage manager application" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <NavigationBar shouldShowHomeButton shouldShowFeatures>
+        <Box display="flex" flexDirection="column" gap="16px">
+          <Box>Garage Page</Box>
+          {/* <pre>{JSON.stringify(data.body, null, 2)}</pre> */}
+          <Box>{data.body.name}</Box>
+        </Box>
+      </NavigationBar>
+    </>
+  );
+};
 
 export default Garage;
