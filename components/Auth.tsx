@@ -13,7 +13,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import { supabase } from "../lib/SupabaseClient";
+import { supabase } from "~/lib/SupabaseClient";
 
 type AuthFormValues = {
   email: string;

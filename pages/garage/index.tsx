@@ -2,9 +2,9 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
 import useSWR from "swr";
-import NavigationBar from "../../layouts/NavigationBar";
-import { supabase } from "../../lib/SupabaseClient";
-import { definitions } from "../../types/supabase";
+import NavigationBar from "~/layouts/NavigationBar";
+import { supabase } from "~/lib/SupabaseClient";
+import { definitions } from "~/types/supabase";
 
 const fetcher = async () => supabase
   .from<definitions["vehicles"]>("vehicles")

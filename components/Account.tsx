@@ -3,7 +3,7 @@ import { Session } from "@supabase/supabase-js";
 import {
   Button, ButtonGroup, Flex, Input,
 } from "@chakra-ui/react";
-import { supabase } from "../lib/SupabaseClient";
+import { supabase } from "~/lib/SupabaseClient";
 
 type Props = {
   session: Session | null;

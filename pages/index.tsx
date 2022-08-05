@@ -3,10 +3,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import { Session } from "@supabase/supabase-js";
-import NavigationBar from "../layouts/NavigationBar";
-import { supabase } from "../lib/SupabaseClient";
-import Auth from "../components/Auth";
-import Account from "../components/Account";
+import NavigationBar from "~/layouts/NavigationBar";
+import { supabase } from "~/lib/SupabaseClient";
+import Auth from "~/components/Auth";
+import Account from "~/components/Account";
 
 const Home: NextPage = () => {
   const [session, setSession] = useState<Session | null>(null);
