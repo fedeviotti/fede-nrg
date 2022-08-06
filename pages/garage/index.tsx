@@ -32,7 +32,7 @@ export const getServerSideProps = async () => {
   const vehicles = await prisma.vehicle.findMany();
 
   return {
-    props: { vehicles: JSON.parse(JSON.stringify(vehicles)) },
+    props: { vehicles },
   };
 };
 
