@@ -13,7 +13,7 @@ model Profiles {
   username   String?    @unique
   avatar_url String?    @map("avatarUrl")
   website    String?
-  vehicles   vehicles[]
+  vehicles   Vehicles[]
 
   @@map("profiles")
 }
@@ -24,7 +24,7 @@ model Services {
   name        String?
   description String?
   vehicle_id  BigInt?   @map("vehicleId")
-  vehicles    vehicles? @relation(fields: [vehicle_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicles    Vehicles? @relation(fields: [vehicle_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("services")
 }
@@ -33,7 +33,7 @@ model VehicleTypes {
   id         BigInt     @id @default(autoincrement())
   created_at DateTime?  @default(now()) @db.Timestamptz(6) @map("createdAt")
   name       String?    @db.VarChar
-  vehicles   vehicles[]
+  vehicles   Vehicles[]
 
   @@map("vehicle_types")
 }
@@ -44,9 +44,9 @@ model Vehicles {
   name          String?        @db.VarChar
   owner_id      String?        @db.Uuid @map("ownerId")
   type_id       BigInt?        @map("typeId")
-  profiles      profiles?      @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  vehicle_types vehicle_types? @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction) @map("vehicleTypes")
-  services      services[]
+  profiles      Profiles?      @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicle_types VehicleTypes?  @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  services      Services[]
 
   @@map("vehicles")
 }
