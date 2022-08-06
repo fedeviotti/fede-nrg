@@ -28,7 +28,7 @@ const Garage = ({ vehicles }: Props) => (
   </>
 );
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const vehicles = await prisma.vehicle.findMany();
 
   return {
