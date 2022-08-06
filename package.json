@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "ts-types-generator": "npx openapi-typescript https://fwxcutzqosuudoqfaqco.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3eGN1dHpxb3N1dWRvcWZhcWNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTg1NjA3MTAsImV4cCI6MTk3NDEzNjcxMH0.tbhV0OkTS9nWXdCakD1iia48wsGVgiWD30A7IfPyhYY --output types/supabase.ts"
+    "lint": "next lint"
   },
   "dependencies": {
     "@babel/core": "^7.18.9",
