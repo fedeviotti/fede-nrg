@@ -7,46 +7,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Profiles {
-  id         String     @id @db.Uuid
-  updatedAt  DateTime?  @db.Timestamptz(6) @map("updated_at")
-  username   String?    @unique
-  avatarUrl  String?    @map("avatar_url")
-  website    String?
-  vehicles   Vehicles[]
-
-  @@map("profiles")
+model Profile {
+  id        String    @id(map: "profiles_pkey") @db.Uuid
+  updatedAt DateTime? @db.Timestamptz(6)
+  username  String?   @unique(map: "profiles_username_key")
+  avatarUrl String?
+  website   String?
+  email     String?
+  Vehicle   Vehicle[]
 }
 
-model Services {
-  id          BigInt    @id @default(autoincrement())
-  createdAt   DateTime? @default(now()) @db.Timestamptz(6) @map("created_at")
+model Service {
+  id          BigInt    @id(map: "services_pkey") @default(autoincrement())
+  createdAt   DateTime? @default(now()) @db.Timestamptz(6)
   name        String?
   description String?
-  vehicleId   BigInt?   @map("vehicle_id")
-  vehicles    Vehicles? @relation(fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-
-  @@map("services")
+  vehicleId   BigInt?
+  Vehicle     Vehicle?  @relation(fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model VehicleTypes {
-  id         BigInt     @id @default(autoincrement())
-  createdAt  DateTime?  @default(now()) @db.Timestamptz(6) @map("created_at")
-  name       String?    @db.VarChar
-  vehicles   Vehicles[]
-
-  @@map("vehicle_types")
+model Vehicle {
+  id          BigInt       @id(map: "vehicles_pkey") @default(autoincrement())
+  createdAt   DateTime?    @default(now()) @db.Timestamptz(6)
+  name        String?      @db.VarChar
+  ownerId     String?      @db.Uuid
+  typeId      BigInt?
+  Profile     Profile?     @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  VehicleType VehicleType? @relation(fields: [typeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Service     Service[]
 }
 
-model Vehicles {
-  id            BigInt         @id @default(autoincrement())
-  createdAt     DateTime?      @default(now()) @db.Timestamptz(6) @map("created_at")
-  name          String?        @db.VarChar
-  ownerId       String?        @db.Uuid @map("owner_id")
-  typeId        BigInt?        @map("type_id")
-  profiles      Profiles?      @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  vehicle_types VehicleTypes?  @relation(fields: [typeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  services      Services[]
-
-  @@map("vehicles")
+model VehicleType {
+  id        BigInt    @id(map: "vehicle_types_pkey") @default(autoincrement())
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  name      String?   @db.VarChar
+  Vehicle   Vehicle[]
 }
