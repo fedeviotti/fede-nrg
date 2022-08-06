@@ -9,9 +9,9 @@ datasource db {
 
 model Profiles {
   id         String     @id @db.Uuid
-  updated_at DateTime?  @db.Timestamptz(6) @map("updatedAt")
+  updatedAt  DateTime?  @db.Timestamptz(6) @map("updated_at")
   username   String?    @unique
-  avatar_url String?    @map("avatarUrl")
+  avatarUrl  String?    @map("avatar_url")
   website    String?
   vehicles   Vehicles[]
 
@@ -20,18 +20,18 @@ model Profiles {
 
 model Services {
   id          BigInt    @id @default(autoincrement())
-  created_at  DateTime? @default(now()) @db.Timestamptz(6) @map("createdAt")
+  createdAt   DateTime? @default(now()) @db.Timestamptz(6) @map("created_at")
   name        String?
   description String?
-  vehicle_id  BigInt?   @map("vehicleId")
-  vehicles    Vehicles? @relation(fields: [vehicle_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicleId   BigInt?   @map("vehicle_id")
+  vehicles    Vehicles? @relation(fields: [vehicleId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("services")
 }
 
 model VehicleTypes {
   id         BigInt     @id @default(autoincrement())
-  created_at DateTime?  @default(now()) @db.Timestamptz(6) @map("createdAt")
+  createdAt  DateTime?  @default(now()) @db.Timestamptz(6) @map("created_at")
   name       String?    @db.VarChar
   vehicles   Vehicles[]
 
@@ -40,12 +40,12 @@ model VehicleTypes {
 
 model Vehicles {
   id            BigInt         @id @default(autoincrement())
-  created_at    DateTime?      @default(now()) @db.Timestamptz(6) @map("createdAt")
+  createdAt     DateTime?      @default(now()) @db.Timestamptz(6) @map("created_at")
   name          String?        @db.VarChar
-  owner_id      String?        @db.Uuid @map("ownerId")
-  type_id       BigInt?        @map("typeId")
-  profiles      Profiles?      @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  vehicle_types VehicleTypes?  @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ownerId       String?        @db.Uuid @map("owner_id")
+  typeId        BigInt?        @map("type_id")
+  profiles      Profiles?      @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vehicle_types VehicleTypes?  @relation(fields: [typeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   services      Services[]
 
   @@map("vehicles")
