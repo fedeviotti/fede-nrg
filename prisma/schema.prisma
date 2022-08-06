@@ -8,42 +8,43 @@ datasource db {
 }
 
 model Vehicle {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  name          String   @db.VarChar(255)
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  name          String      @db.VarChar(255)
   description   String?
-  isOwned       Boolean  @default(true)
-  owner         User     @relation(fields: [ownerId], references: [id])
+  isOwned       Boolean     @default(true)
+  owner         Profile     @relation(fields: [ownerId], references: [id])
   ownerId       Int
-  type          VehicleType   @relation(fields: [typeId], references: [id])
-  typeId        Int
+  type          VehicleType @relation(fields: [typeId], references: [id])
+  typeId        Int         @unique
+  services      Service[]
 }
 
 model VehicleType {
   id        Int       @id @default(autoincrement())
   createdAt DateTime? @default(now())
   name      String?   @db.VarChar
+  vehicle   Vehicle?
 }
 
 model Profile {
-  id        Int     @id @default(autoincrement())
-  updatedAt DateTime? @db.Timestamptz(6)
-  email     String   @unique
-  username  String   @unique
+  id        Int         @id @default(autoincrement())
+  updatedAt DateTime?   @db.Timestamptz(6)
+  email     String      @unique
+  username  String      @unique
   bio       String?
   avatarUrl String?
   website   String?
-  user      User    @relation(fields: [userId], references: [id])
-  userId    Int     @unique
+  vehicles  Vehicle[]
 }
 
 model Service {
-  id          Int       @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   createdAt   DateTime  @default(now())
   name        String?
   description String?
   vehicle     Vehicle?  @relation(fields: [vehicleId], references: [id])
-  vehicleId   BigInt?
+  vehicleId   Int?
 }
 
