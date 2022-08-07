@@ -2,11 +2,11 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
 import NavigationBar from "~/layouts/NavigationBar";
-import { Vehicles } from "@prisma/client";
+import { Vehicles as Vehicle } from "@prisma/client";
 import prisma from "~/lib/prisma";
 
 type Props = {
-  vehicles: Vehicles[];
+  vehicles: Vehicle[];
 };
 
 const Garage = ({ vehicles }: Props) => (
