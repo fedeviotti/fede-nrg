@@ -4,6 +4,7 @@ import Head from "next/head";
 import NavigationBar from "~/layouts/NavigationBar";
 import { Vehicles as Vehicle } from "@prisma/client";
 import { prisma } from "~/lib/prisma";
+import { resultSerializer } from "~/lib/resultSerializer";
 
 type Props = {
   vehicles: Vehicle[];
@@ -32,7 +33,7 @@ export const getStaticProps = async () => {
   const vehicles = await prisma.vehicles.findMany();
 
   return {
-    props: { vehicles },
+    props: { vehicles: resultSerializer(vehicles) },
   };
 };
 
