@@ -21,7 +21,7 @@ const Account = ({ session }: Props) => {
       const user = supabase.auth.user();
 
       const { data, error, status } = await supabase
-        .from("profiles")
+        .from("profile")
         .select("username, website, avatar_url")
         .eq("id", user?.id)
         .single();
@@ -59,7 +59,7 @@ const Account = ({ session }: Props) => {
         updated_at: new Date(),
       };
 
-      const { error } = await supabase.from("profiles").upsert(updates, {
+      const { error } = await supabase.from("profile").upsert(updates, {
         returning: "minimal", // Don't return the value after inserting
       });
 
