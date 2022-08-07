@@ -58,7 +58,13 @@ async function main() {
   });
 
   console.log({
-    bike, car, rockrider, elops, rockriderServiceOne, rockriderServiceTwo, elopsService,
+    bike,
+    car,
+    rockrider,
+    elops,
+    rockriderServiceOne,
+    rockriderServiceTwo,
+    elopsService,
   });
 }
 
