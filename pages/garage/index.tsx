@@ -2,11 +2,11 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
 import NavigationBar from "~/layouts/NavigationBar";
-import { Vehicle } from "@prisma/client";
+import { Vehicles } from "@prisma/client";
 import prisma from "~/lib/prisma";
 
 type Props = {
-  vehicles: Vehicle[];
+  vehicles: Vehicles[];
 };
 
 const Garage = ({ vehicles }: Props) => (
@@ -29,7 +29,7 @@ const Garage = ({ vehicles }: Props) => (
 );
 
 export const getStaticProps = async () => {
-  const vehicles = await prisma.vehicle.findMany();
+  const vehicles = await prisma.vehicles.findMany();
 
   return {
     props: { vehicles },
