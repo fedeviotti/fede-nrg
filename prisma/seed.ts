@@ -16,6 +16,7 @@ async function main() {
     },
   });
 
+  // Important: add manually ownerId that is created when a user is created
   const rockrider = await prisma.vehicles.create({
     data: {
       name: "Rockrider ST 540",
@@ -32,8 +33,32 @@ async function main() {
     },
   });
 
+  const rockriderServiceOne = await prisma.services.create({
+    data: {
+      name: "Manutenzione pedale",
+      description: "Fissaggio pedale dopo che si è staccato due volte",
+      vehicleId: rockrider.id,
+    },
+  });
+
+  const rockriderServiceTwo = await prisma.services.create({
+    data: {
+      name: "Cambio gomme",
+      description: "Messo gomme tubeless",
+      vehicleId: rockrider.id,
+    },
+  });
+
+  const elopsService = await prisma.services.create({
+    data: {
+      name: "Check annuale",
+      description: "Controllo annuale gratuito entro il primo anno",
+      vehicleId: elops.id,
+    },
+  });
+
   console.log({
-    bike, car, rockrider, elops,
+    bike, car, rockrider, elops, rockriderServiceOne, rockriderServiceTwo, elopsService,
   });
 }
 
