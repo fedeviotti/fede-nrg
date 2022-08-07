@@ -20,7 +20,7 @@ const Garage = ({ vehicles }: Props) => (
     <NavigationBar shouldShowHomeButton shouldShowFeatures>
       <Box display="flex" flexDirection="column" gap="16px">
         <Box>Garage Page</Box>
-        <pre>{JSON.stringify(vehicles, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(vehicles, null, 2)}</pre> */}
         {vehicles?.map((vehicle) => (
           <Box key={Number(vehicle.id)}>{vehicle.name}</Box>
         ))}
