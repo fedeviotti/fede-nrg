@@ -10,52 +10,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Vehicle {
+model Vehicles {
   id            Int         @id @default(autoincrement())
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
   name          String      @db.VarChar(255)
   description   String?
-  isOwned       Boolean     @default(true)
-  type          VehicleType @relation(fields: [typeId], references: [id])
-  typeId        Int         @unique
-  services      Service[]
-  ownerId       String?     @db.Uuid
-  owner         Profile?    @relation(fields: [ownerId], references: [id])
+  isOwned       Boolean     @default(true) @map("is_owned")
+  type          VehicleTypes @relation(fields: [typeId], references: [id])
+  typeId        Int         @unique @map("type_id")
+  services      Services[]
+  ownerId       String?     @db.Uuid @map("owner_id")
+  owner         Profiles?    @relation(fields: [ownerId], references: [id])
 
-  @@map("vehicle")
+  @@map("vehicles")
 }
 
-model VehicleType {
+model VehicleTypes {
   id            Int       @id @default(autoincrement())
-  createdAt     DateTime? @default(now())
+  createdAt     DateTime? @default(now()) @map("created_at")
   name          String?   @db.VarChar
   description   String?
-  vehicle       Vehicle?
+  vehicle       Vehicles?
 
-  @@map("vehicle_type")
+  @@map("vehicle_types")
 }
 
-model Profile {
+model Profiles {
   id        String      @id @db.Uuid
-  updatedAt DateTime?   @db.Timestamptz(6)
+  updatedAt DateTime?   @db.Timestamptz(6) @map("updated_at")
   email     String      @unique
   username  String?     @unique
   bio       String?
   avatarUrl String?     @map("avatar_url")
   website   String?
-  vehicles  Vehicle[]
+  vehicles  Vehicles[]
 
-  @@map("profile")
+  @@map("profiles")
 }
 
-model Service {
+model Services {
   id          Int       @id @default(autoincrement())
-  createdAt   DateTime  @default(now())
+  createdAt   DateTime  @default(now()) @map("created_at")
   name        String?
   description String?
-  vehicle     Vehicle?  @relation(fields: [vehicleId], references: [id])
-  vehicleId   Int?
+  vehicle     Vehicles?  @relation(fields: [vehicleId], references: [id])
+  vehicleId   Int? @map("vehicle_id")
 
-  @@map("service")
+  @@map("services")
 }
