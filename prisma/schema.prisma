@@ -24,10 +24,11 @@ model Vehicle {
 }
 
 model VehicleType {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime? @default(now())
-  name      String?   @db.VarChar
-  vehicle   Vehicle?
+  id            Int       @id @default(autoincrement())
+  createdAt     DateTime? @default(now())
+  name          String?   @db.VarChar
+  description   String?
+  vehicle       Vehicle?
 
   @@map("vehicle_type")
 }
@@ -38,7 +39,7 @@ model Profile {
   email     String      @unique
   username  String      @unique
   bio       String?
-  avatarUrl String?
+  avatarUrl String?     @map("avatar_url")
   website   String?
   vehicles  Vehicle[]
 
