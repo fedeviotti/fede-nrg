@@ -14,8 +14,6 @@ model Vehicle {
   name          String      @db.VarChar(255)
   description   String?
   isOwned       Boolean     @default(true)
-  owner         Profile     @relation(fields: [ownerId], references: [id])
-  ownerId       Int
   type          VehicleType @relation(fields: [typeId], references: [id])
   typeId        Int         @unique
   services      Service[]
@@ -33,14 +31,13 @@ model VehicleType {
 }
 
 model Profile {
-  id        Int         @id @default(autoincrement())
+  id        String      @id @db.Uuid
   updatedAt DateTime?   @db.Timestamptz(6)
   email     String      @unique
   username  String      @unique
   bio       String?
   avatarUrl String?
   website   String?
-  vehicles  Vehicle[]
 
   @@map("profile")
 }
