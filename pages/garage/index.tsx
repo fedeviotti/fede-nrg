@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import Head from "next/head";
 import NavigationBar from "~/layouts/NavigationBar";
 import { Vehicles as Vehicle } from "@prisma/client";
-import prisma from "~/lib/prisma";
+import { prisma } from "~/lib/prisma";
 
 type Props = {
   vehicles: Vehicle[];
