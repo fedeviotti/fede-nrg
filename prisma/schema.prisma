@@ -18,7 +18,7 @@ model Vehicles {
   description   String?
   isOwned       Boolean     @default(true) @map("is_owned")
   type          VehicleTypes @relation(fields: [typeId], references: [id])
-  typeId        Int         @unique @map("type_id")
+  typeId        Int         @map("type_id")
   services      Services[]
   ownerId       String?     @db.Uuid @map("owner_id")
   owner         Profiles?    @relation(fields: [ownerId], references: [id])
@@ -31,7 +31,7 @@ model VehicleTypes {
   createdAt     DateTime? @default(now()) @map("created_at")
   name          String?   @db.VarChar
   description   String?
-  vehicle       Vehicles?
+  vehicle       Vehicles[]
 
   @@map("vehicle_types")
 }
