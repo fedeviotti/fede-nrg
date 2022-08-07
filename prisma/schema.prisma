@@ -19,6 +19,8 @@ model Vehicle {
   type          VehicleType @relation(fields: [typeId], references: [id])
   typeId        Int         @unique
   services      Service[]
+
+  @@map("vehicle")
 }
 
 model VehicleType {
@@ -26,6 +28,8 @@ model VehicleType {
   createdAt DateTime? @default(now())
   name      String?   @db.VarChar
   vehicle   Vehicle?
+
+  @@map("vehicle_type")
 }
 
 model Profile {
@@ -37,6 +41,8 @@ model Profile {
   avatarUrl String?
   website   String?
   vehicles  Vehicle[]
+
+  @@map("profile")
 }
 
 model Service {
@@ -46,5 +52,7 @@ model Service {
   description String?
   vehicle     Vehicle?  @relation(fields: [vehicleId], references: [id])
   vehicleId   Int?
+
+  @@map("service")
 }
 
