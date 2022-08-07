@@ -22,7 +22,6 @@ specifiers:
   prisma: ^4.1.1
   react: 18.2.0
   react-dom: 18.2.0
-  superjson: ^1.9.1
   ts-node: ^10.9.1
   typescript: 4.7.4
   yup: ^0.32.11
@@ -36,13 +35,12 @@ dependencies:
   '@fontsource/poppins': 4.5.8
   '@prisma/client': 4.1.1_prisma@4.1.1
   '@supabase/supabase-js': 1.35.4
-  babel-plugin-superjson-next: 0.4.3_next@12.2.3+superjson@1.9.1
+  babel-plugin-superjson-next: 0.4.3_next@12.2.3
   formik: 2.2.9_react@18.2.0
   framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
   next: 12.2.3_850d4ee91924e701c20cec04912e6240
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  superjson: 1.9.1
   yup: 0.32.11
 
 devDependencies:
@@ -1981,7 +1979,7 @@ packages:
       resolve: 1.22.1
     dev: false
 
-  /babel-plugin-superjson-next/0.4.3_next@12.2.3+superjson@1.9.1:
+  /babel-plugin-superjson-next/0.4.3_next@12.2.3:
     resolution: {integrity: sha512-wfPsTPnEn1YaEkmaoomN4Z/Hm6nWVWFkASdetP/Ju2aPz/8XguAJwuThZIBH9dMTtXnyGXnbJufPQ0wRha0QcA==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -1992,7 +1990,6 @@ packages:
       '@babel/types': 7.18.9
       hoist-non-react-statics: 3.3.2
       next: 12.2.3_850d4ee91924e701c20cec04912e6240
-      superjson: 1.9.1
     dev: false
 
   /balanced-match/1.0.2:
@@ -2098,13 +2095,6 @@ packages:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
       safe-buffer: 5.1.2
-    dev: false
-
-  /copy-anything/3.0.2:
-    resolution: {integrity: sha512-CzATjGXzUQ0EvuvgOCI6A4BGOo2bcVx8B+eC2nF862iv9fopnPQwlrbACakNCHRIJbCSBj+J/9JeDf60k64MkA==}
-    engines: {node: '>=12.13'}
-    dependencies:
-      is-what: 4.1.7
     dev: false
 
   /copy-to-clipboard/3.3.1:
@@ -3042,11 +3032,6 @@ packages:
       call-bind: 1.0.2
     dev: true
 
-  /is-what/4.1.7:
-    resolution: {integrity: sha512-DBVOQNiPKnGMxRMLIYSwERAS5MVY1B7xYiGnpgctsOFvVDz9f9PFXXxMcTOHuoqYp4NK9qFYQaIC1NRRxLMpBQ==}
-    engines: {node: '>=12.13'}
-    dev: false
-
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
@@ -3789,13 +3774,6 @@ packages:
 
   /stylis/4.0.13:
     resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}
-    dev: false
-
-  /superjson/1.9.1:
-    resolution: {integrity: sha512-oT3HA2nPKlU1+5taFgz/HDy+GEaY+CWEbLzaRJVD4gZ7zMVVC4GDNFdgvAZt6/VuIk6D2R7RtPAiCHwmdzlMmg==}
-    engines: {node: '>=10'}
-    dependencies:
-      copy-anything: 3.0.2
     dev: false
 
   /supports-color/5.5.0:
