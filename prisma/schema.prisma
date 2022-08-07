@@ -37,7 +37,7 @@ model Profile {
   id        String      @id @db.Uuid
   updatedAt DateTime?   @db.Timestamptz(6)
   email     String      @unique
-  username  String      @unique
+  username  String?     @unique
   bio       String?
   avatarUrl String?     @map("avatar_url")
   website   String?
