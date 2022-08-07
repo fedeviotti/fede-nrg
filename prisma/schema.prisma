@@ -17,6 +17,8 @@ model Vehicle {
   type          VehicleType @relation(fields: [typeId], references: [id])
   typeId        Int         @unique
   services      Service[]
+  ownerId       String?     @db.Uuid
+  owner         Profile?    @relation(fields: [ownerId], references: [id])
 
   @@map("vehicle")
 }
@@ -38,6 +40,7 @@ model Profile {
   bio       String?
   avatarUrl String?
   website   String?
+  vehicles  Vehicle[]
 
   @@map("profile")
 }
