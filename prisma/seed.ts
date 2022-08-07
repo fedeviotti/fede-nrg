@@ -16,7 +16,25 @@ async function main() {
     },
   });
 
-  console.log({ bike, car });
+  const rockrider = await prisma.vehicles.create({
+    data: {
+      name: "Rockrider ST 540",
+      description: "MTB",
+      typeId: bike.id,
+    },
+  });
+
+  const elops = await prisma.vehicles.create({
+    data: {
+      name: "Elops",
+      description: "City bike",
+      typeId: bike.id,
+    },
+  });
+
+  console.log({
+    bike, car, rockrider, elops,
+  });
 }
 
 main()
