@@ -33,6 +33,14 @@ async function main() {
     },
   });
 
+  const giant = await prisma.vehicles.create({
+    data: {
+      name: "Giant",
+      description: "MTB Front Full Carbon",
+      typeId: bike.id,
+    },
+  });
+
   const rockriderServiceOne = await prisma.services.create({
     data: {
       name: "Manutenzione pedale",
@@ -62,6 +70,7 @@ async function main() {
     car,
     rockrider,
     elops,
+    giant,
     rockriderServiceOne,
     rockriderServiceTwo,
     elopsService,
