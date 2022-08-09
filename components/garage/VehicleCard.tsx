@@ -36,7 +36,7 @@ export const VehicleCard = ({ vehicle }: Props) => {
           src={imageSrc}
         />
         <Stack pt={8} align="center" spacing={6}>
-          <Tag size="md" key="md" variant="solid" colorScheme="orange" textTransform="uppercase">
+          <Tag size="md" key="md" variant="solid" colorScheme="brand" textTransform="uppercase">
             {vehicle.type.name}
           </Tag>
           <Heading fontSize="2xl" fontFamily="body" fontWeight={500}>
