@@ -12,8 +12,8 @@ const Garage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <NavigationBar shouldShowHomeButton shouldShowFeatures>
-      <Box display="flex" flexDirection="column" gap="16px">
-        <Heading>Garage Page</Heading>
+      <Box display="flex" flexDirection="column" gap="16px" alignItems="center">
+        <Heading as="h2" size="xl" fontWeight="semibold">Garage Page</Heading>
         <VehicleList />
       </Box>
     </NavigationBar>
