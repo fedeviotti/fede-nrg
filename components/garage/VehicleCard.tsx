@@ -2,9 +2,9 @@ import React from "react";
 import {
   Box, Center, Heading, Image, Stack, Tag, useColorModeValue,
 } from "@chakra-ui/react";
-import BIKE_IMAGE_LIGHT from "~/assets/garage/bicycle-1054-ligth.svg";
-import BIKE_IMAGE_DARK from "~/assets/garage/bicycle-1054-dark.svg";
 import { ExtendedVehicle } from "~/types/garage/vehicle";
+import BIKE_IMAGE_DARK from "~/assets/garage/bicycle-9628-dark.svg";
+import BIKE_IMAGE_LIGHT from "~/assets/garage/bicycle-9628-light.svg";
 
 type Props = {
   vehicle: ExtendedVehicle;
