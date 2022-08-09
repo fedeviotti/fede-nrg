@@ -7,6 +7,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     where: {
       ownerId,
     },
+    include: {
+      type: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
   res.json(vehicles);
 }
