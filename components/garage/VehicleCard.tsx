@@ -1,50 +1,31 @@
 import React from "react";
 import {
-  Box, Center, Heading, Image, Stack, Text, useColorModeValue,
+  Box, Center, Heading, Image, Stack, Tag, useColorModeValue,
 } from "@chakra-ui/react";
-import { Vehicles as Vehicle } from "@prisma/client";
-
-const IMAGE = "https://picsum.photos/282/230";
+import BIKE_IMAGE_LIGHT from "~/assets/garage/bicycle-1054-ligth.svg";
+import BIKE_IMAGE_DARK from "~/assets/garage/bicycle-1054-dark.svg";
+import { ExtendedVehicle } from "~/types/garage/vehicle";
 
 type Props = {
-  vehicle: Vehicle;
+  vehicle: ExtendedVehicle;
 };
 
-export const VehicleCard = ({ vehicle }: Props) => (
-  <Center py={12}>
-    <Box
-      role="group"
-      p={6}
-      maxW="330px"
-      w="full"
-      bg={useColorModeValue("white", "gray.800")}
-      boxShadow="2xl"
-      rounded="lg"
-      pos="relative"
-      zIndex={1}
-    >
+export const VehicleCard = ({ vehicle }: Props) => {
+  const imageSrc = useColorModeValue(BIKE_IMAGE_LIGHT.src, BIKE_IMAGE_DARK.src);
+
+  return (
+    <Center px={8}>
       <Box
-        rounded="lg"
-        mt={-12}
+        role="group"
+        p={8}
+        maxW="330px"
+        w="full"
+        bg={useColorModeValue("white", "gray.800")}
         pos="relative"
-        height="230px"
-        _after={{
-          transition: "all .3s ease",
-          content: '""',
-          w: "full",
-          h: "full",
-          pos: "absolute",
-          top: 5,
-          left: 0,
-          backgroundImage: `url(${IMAGE})`,
-          filter: "blur(15px)",
-          zIndex: -1,
-        }}
-        _groupHover={{
-          _after: {
-            filter: "blur(20px)",
-          },
-        }}
+        zIndex={1}
+        border="1px solid"
+        borderColor={useColorModeValue("blackAlpha.300", "whiteAlpha.300")}
+        borderRadius="lg"
       >
         <Image
           alt="Vehicle detail card"
@@ -52,18 +33,17 @@ export const VehicleCard = ({ vehicle }: Props) => (
           height={230}
           width={282}
           objectFit="cover"
-          src={IMAGE}
+          src={imageSrc}
         />
+        <Stack pt={8} align="center" spacing={6}>
+          <Tag size="md" key="md" variant="solid" colorScheme="orange" textTransform="uppercase">
+            {vehicle.type.name}
+          </Tag>
+          <Heading fontSize="2xl" fontFamily="body" fontWeight={500}>
+            {vehicle.name}
+          </Heading>
+        </Stack>
       </Box>
-      <Stack pt={10} align="center">
-        {/* For type use tag */}
-        <Text color="gray.500" fontSize="sm" textTransform="uppercase">
-          {vehicle.typeId}
-        </Text>
-        <Heading fontSize="2xl" fontFamily="body" fontWeight={500}>
-          {vehicle.name}
-        </Heading>
-      </Stack>
-    </Box>
-  </Center>
-);
+    </Center>
+  );
+};
