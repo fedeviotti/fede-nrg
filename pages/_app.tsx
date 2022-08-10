@@ -22,11 +22,25 @@ import React from "react";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "~/themes/theme";
+import { NavbarLayout } from "~/layouts/NavbarLayout";
+import { NextPage } from "next";
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
-  <ChakraProvider theme={theme}>
-    <Component {...pageProps} />
-  </ChakraProvider>
-);
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => <NavbarLayout>{page}</NavbarLayout>);
+
+  return (
+    <ChakraProvider theme={theme}>
+      {getLayout(<Component {...pageProps} />)}
+    </ChakraProvider>
+  );
+};
 
 export default MyApp;
