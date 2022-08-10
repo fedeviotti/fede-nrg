@@ -12,7 +12,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const NavigationBar = ({ shouldShowHomeButton, shouldShowFeatures, children }: Props) => {
+const Navbar = ({ shouldShowHomeButton, shouldShowFeatures, children }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const logoSrc = useColorModeValue(LOGO_LIGHT.src, LOGO_DARK.src);
 
@@ -43,7 +43,7 @@ const NavigationBar = ({ shouldShowHomeButton, shouldShowFeatures, children }: P
               <NextLink href="/garage" passHref>
                 <Button as="a">Garage</Button>
               </NextLink>
-              <NextLink href="#" passHref>
+              <NextLink href="/memory" passHref>
                 <Button as="a">Memory</Button>
               </NextLink>
             </>
@@ -55,9 +55,9 @@ const NavigationBar = ({ shouldShowHomeButton, shouldShowFeatures, children }: P
           </Button>
         </ButtonGroup>
       </Flex>
-      <Flex justifyContent="center" p={8} width="full" height="full">{children}</Flex>
+      {children}
     </Flex>
   );
 };
 
-export default NavigationBar;
+export default Navbar;
