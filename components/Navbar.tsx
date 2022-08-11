@@ -27,7 +27,6 @@ const Navbar = ({ shouldShowHomeButton, shouldShowFeatures, children }: Props) =
       >
         <Image
           alt="FedeNrg Logo"
-          rounded="lg"
           height={10}
           objectFit="cover"
           src={logoSrc}
