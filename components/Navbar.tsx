@@ -1,18 +1,16 @@
 import React from "react";
 import {
-  Button, ButtonGroup, Flex, Image, useColorMode, useColorModeValue,
+  Button, Flex, HStack, Image, useColorMode, useColorModeValue,
 } from "@chakra-ui/react";
-import NextLink from "next/link";
+import Link from "next/link";
 import LOGO_LIGHT from "~/assets/FEDENRG_LOGO_LIGHT.png";
 import LOGO_DARK from "~/assets/FEDENRG_LOGO_DARK.png";
 
 type Props = {
-  shouldShowHomeButton?: boolean;
-  shouldShowFeatures?: boolean;
   children: React.ReactNode;
 };
 
-const Navbar = ({ shouldShowHomeButton, shouldShowFeatures, children }: Props) => {
+const Navbar = ({ children }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const logoSrc = useColorModeValue(LOGO_LIGHT.src, LOGO_DARK.src);
 
@@ -31,28 +29,16 @@ const Navbar = ({ shouldShowHomeButton, shouldShowFeatures, children }: Props) =
           objectFit="cover"
           src={logoSrc}
         />
-        <ButtonGroup>
-          {shouldShowHomeButton && (
-            <NextLink href="/" passHref>
-              <Button as="a">Home</Button>
-            </NextLink>
-          )}
-          {shouldShowFeatures && (
-            <>
-              <NextLink href="/garage" passHref>
-                <Button as="a">Garage</Button>
-              </NextLink>
-              <NextLink href="/memory" passHref>
-                <Button as="a">Memory</Button>
-              </NextLink>
-            </>
-          )}
+        <HStack spacing={8}>
+          <Link href="/">Home</Link>
+          <Link href="/garage">Garage</Link>
+          <Link href="/memory">Memory</Link>
           <Button onClick={toggleColorMode} variant="outline">
             Toggle
             {" "}
             {colorMode === "light" ? "Dark" : "Light"}
           </Button>
-        </ButtonGroup>
+        </HStack>
       </Flex>
       {children}
     </Flex>

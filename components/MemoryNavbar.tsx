@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  Button, ButtonGroup, Flex, Image, useColorMode, useColorModeValue,
+  Flex, HStack, Image, useColorMode, useColorModeValue,
 } from "@chakra-ui/react";
-import NextLink from "next/link";
+import Link from "next/link";
 import MEMORY_LOGO_LIGHT from "~/assets/MEMORY_LOGO_LIGHT.png";
 import MEMORY_LOGO_DARK from "~/assets/MEMORY_LOGO_DARK.png";
 
@@ -29,11 +29,9 @@ const MemoryNavbar = ({ children }: Props) => {
           objectFit="cover"
           src={logoSrc}
         />
-        <ButtonGroup>
-          <NextLink href="/" passHref>
-            <Button as="a">Back</Button>
-          </NextLink>
-        </ButtonGroup>
+        <HStack spacing={8}>
+          <Link href="/">Home</Link>
+        </HStack>
       </Flex>
       {children}
     </Flex>

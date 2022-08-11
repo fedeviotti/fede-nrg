@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const NavbarLayout = ({ children }: Props) => (
-  <Navbar shouldShowFeatures shouldShowHomeButton>
+  <Navbar>
     <Flex justifyContent="center" p={8} width="full" height="full">
       {children}
     </Flex>
