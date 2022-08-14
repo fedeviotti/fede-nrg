@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import { Session } from "@supabase/supabase-js";
-import { supabase } from "~/lib/SupabaseClient";
+import { supabase } from "~/lib/initSupabaseClient";
 import Account from "~/components/Account";
 import AuthLogin from "~/components/AuthLogin";
 
