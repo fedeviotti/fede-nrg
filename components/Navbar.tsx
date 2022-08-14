@@ -5,6 +5,7 @@ import {
 import Link from "next/link";
 import LOGO_LIGHT from "~/assets/FEDENRG_LOGO_LIGHT.png";
 import LOGO_DARK from "~/assets/FEDENRG_LOGO_DARK.png";
+import { supabase } from "~/lib/SupabaseClient";
 
 type Props = {
   children: React.ReactNode;
@@ -37,6 +38,9 @@ const Navbar = ({ children }: Props) => {
             Toggle
             {" "}
             {colorMode === "light" ? "Dark" : "Light"}
+          </Button>
+          <Button onClick={() => supabase.auth.signOut()}>
+            Sign Out
           </Button>
         </HStack>
       </Flex>

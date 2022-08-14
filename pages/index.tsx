@@ -4,8 +4,8 @@ import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import { Session } from "@supabase/supabase-js";
 import { supabase } from "~/lib/SupabaseClient";
-import Auth from "~/components/Auth";
 import Account from "~/components/Account";
+import AuthLogin from "~/components/AuthLogin";
 
 const Home: NextPage = () => {
   const [session, setSession] = React.useState<Session | null>(null);
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       </Head>
       <Flex direction="column" gap="8px" width="60%" height="100%">
         <Box>
-          {!session ? <Auth /> : <Account key={session?.user?.id} session={session} />}
+          {session ? <Account key={session?.user?.id} session={session} /> : <AuthLogin /> }
         </Box>
       </Flex>
     </>
