@@ -7,9 +7,10 @@ import { supabase } from "~/lib/initSupabaseClient";
 
 type Props = {
   session: Session | null;
+  signOut: () => void;
 };
 
-const Account = ({ session }: Props) => {
+const Account = ({ session, signOut }: Props) => {
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState<string | null>(null);
   const [website, setWebsite] = useState<string | null>(null);
@@ -115,7 +116,7 @@ const Account = ({ session }: Props) => {
             {loading ? "Loading ..." : "Update"}
           </Button>
 
-          <Button onClick={() => supabase.auth.signOut()}>
+          <Button onClick={signOut}>
             Sign Out
           </Button>
         </ButtonGroup>
