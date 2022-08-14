@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import { VehicleList } from "~/components/garage/VehicleList";
+import enforceAuthenticated from "~/components/enforceAuthenticated";
 
 const Garage = () => (
   <>
@@ -18,3 +19,5 @@ const Garage = () => (
 );
 
 export default Garage;
+
+export const getServerSideProps = enforceAuthenticated();

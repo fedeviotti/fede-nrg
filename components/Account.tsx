@@ -1,47 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Session } from "@supabase/supabase-js";
+import React from "react";
+import { User } from "@supabase/supabase-js";
 import {
   Button, ButtonGroup, Flex, Input,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
 
 type Props = {
-  session: Session | null;
+  user: User | null;
   signOut: () => void;
 };
 
-const Account = ({ session, signOut }: Props) => {
-  const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState<string | null>(null);
-  const [website, setWebsite] = useState<string | null>(null);
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-
-  async function getProfile() {
-    try {
-      setLoading(true);
-      const user = supabase.auth.user();
-
-      const { data, error, status } = await supabase
-        .from("profiles")
-        .select("username, website, avatar_url")
-        .eq("id", user?.id)
-        .single();
-
-      if (error && status !== 406) {
-        throw new Error(error.message);
-      }
-
-      if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
-      }
-    } catch (error: any) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+const Account = ({ user, signOut }: Props) => {
+  const [loading, setLoading] = React.useState(true);
+  const [username, setUsername] = React.useState<string | null>(null);
+  const [website, setWebsite] = React.useState<string | null>(null);
+  const [avatarUrl, setAvatarUrl] = React.useState<string | null>(null);
 
   async function updateProfile({ _username, _website, _avatarUrl }: {
     _username: string | null;
@@ -50,7 +23,6 @@ const Account = ({ session, signOut }: Props) => {
   }) {
     try {
       setLoading(true);
-      const user = supabase.auth.user();
 
       const updates = {
         id: user?.id,
@@ -75,9 +47,34 @@ const Account = ({ session, signOut }: Props) => {
     }
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
+    const getProfile = async () => {
+      try {
+        setLoading(true);
+
+        const { data, error, status } = await supabase
+          .from("profiles")
+          .select("username, website, avatar_url")
+          .eq("id", user?.id)
+          .single();
+
+        if (error && status !== 406) {
+          throw new Error(error.message);
+        }
+
+        if (data) {
+          setUsername(data.username);
+          setWebsite(data.website);
+          setAvatarUrl(data.avatar_url);
+        }
+      } catch (error: any) {
+        alert(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
     getProfile();
-  }, [session]);
+  }, [user]);
 
   return (
     <Flex direction="column" gap="8px">
@@ -85,7 +82,7 @@ const Account = ({ session, signOut }: Props) => {
         id="email"
         type="text"
         placeholder="Email"
-        value={session?.user?.email}
+        value={user?.email}
         disabled
       />
       <Input

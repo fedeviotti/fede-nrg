@@ -3,6 +3,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import { NextPageWithLayout } from "~/pages/_app";
 import { MemoryLayout } from "~/layouts/MemoryLayout";
+import enforceAuthenticated from "~/components/enforceAuthenticated";
 
 const Memory: NextPageWithLayout = () => (
   <>
@@ -27,3 +28,5 @@ Memory.getLayout = function getLayout(memory: React.ReactElement) {
 };
 
 export default Memory;
+
+export const getServerSideProps = enforceAuthenticated();

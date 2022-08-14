@@ -1,5 +1,17 @@
 import React from "react";
-import { Session, SupabaseClient, User } from "@supabase/supabase-js";
+import {
+  AuthChangeEvent, Session, SupabaseClient, User,
+} from "@supabase/supabase-js";
+import { useRouter } from "next/router";
+
+async function handleAuthChange(event: AuthChangeEvent, session: Session | null) {
+  await fetch("/api/auth", {
+    method: "POST",
+    headers: new Headers({ "Content-Type": "application/json" }),
+    credentials: "same-origin",
+    body: JSON.stringify({ event, session }),
+  });
+}
 
 type AuthContextValue = {
   session: Session | null;
@@ -21,24 +33,35 @@ type Props = {
 export const AuthProvider = ({ supabase, ...props }: Props) => {
   const [session, setSession] = React.useState<Session | null>(null);
   const [user, setUser] = React.useState<User | null>(null);
+  const router = useRouter();
 
   React.useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
-        setSession(currentSession);
-        setUser(currentSession?.user ?? null);
+        handleAuthChange(event, currentSession);
+        if (event === "SIGNED_IN") {
+          setSession(currentSession);
+          setUser(currentSession?.user ?? null);
+        }
+        if (event === "SIGNED_OUT") {
+          setSession(null);
+          setUser(null);
+        }
       },
     );
     return () => {
       authListener?.unsubscribe();
     };
-  }, [supabase.auth]);
+  }, [session, supabase.auth]);
 
   const contextValue = React.useMemo(() => ({
     session,
     user,
-    signOut: () => supabase.auth.signOut(),
-  }), [session, supabase.auth, user]);
+    signOut: () => {
+      supabase.auth.signOut();
+      router.push("/");
+    },
+  }), [router, session, supabase.auth, user]);
 
   return (
     <AuthContext.Provider
