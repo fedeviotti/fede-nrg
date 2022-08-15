@@ -4,11 +4,11 @@ import { supabase } from "~/lib/initSupabaseClient";
 type EnforceAuthenticated = (inner?: GetServerSideProps) => GetServerSideProps;
 
 const enforceAuthenticated: EnforceAuthenticated = (inner) => async (context) => {
-  const { req } = context;
+  const { req, resolvedUrl } = context;
   const { user } = await supabase.auth.api.getUserByCookie(req);
 
   if (!user) {
-    return { props: {}, redirect: { destination: "/login" } };
+    return { props: {}, redirect: { destination: `/login?redirect=${resolvedUrl}` } };
   }
 
   if (inner) {

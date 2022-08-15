@@ -10,7 +10,6 @@ import {
   FormErrorMessage,
   Heading,
   Input,
-  Text,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
@@ -24,6 +23,7 @@ type LoginFormValues = {
 const AuthLogin = () => {
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
+  const redirect = router.query.redirect as string;
 
   const handleSubmit = async (submittedValues: LoginFormValues) => {
     try {
@@ -35,8 +35,7 @@ const AuthLogin = () => {
           password: submittedValues.password,
         });
       if (error) throw new Error(error.message);
-      alert("Check your email for the login link!");
-      router.push("/");
+      router.push(redirect || "/");
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
@@ -56,8 +55,7 @@ const AuthLogin = () => {
 
   return (
     <Flex direction="column" gap="16px">
-      <Heading>Supabase + Next.js</Heading>
-      <Text>Log in with email and password</Text>
+      <Heading>Sign in</Heading>
 
       <Formik
         initialValues={{ email: "", password: "" }}
