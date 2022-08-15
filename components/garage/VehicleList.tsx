@@ -1,5 +1,5 @@
 import React from "react";
-import { supabase } from "~/lib/SupabaseClient";
+import { supabase } from "~/lib/initSupabaseClient";
 import useSWR, { Fetcher, Key } from "swr";
 import { Box, Stack } from "@chakra-ui/react";
 import { VehicleCard } from "~/components/garage/VehicleCard";

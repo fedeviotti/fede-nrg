@@ -24,6 +24,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "~/themes/theme";
 import { NavbarLayout } from "~/layouts/NavbarLayout";
 import { NextPage } from "next";
+import { AuthProvider } from "~/lib/AuthProvider";
+import { supabase } from "~/lib/initSupabaseClient";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -38,7 +40,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <ChakraProvider theme={theme}>
-      {getLayout(<Component {...pageProps} />)}
+      <AuthProvider supabase={supabase}>
+        {getLayout(<Component {...pageProps} />)}
+      </AuthProvider>
     </ChakraProvider>
   );
 };

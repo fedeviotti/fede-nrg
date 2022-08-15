@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import {
   Field, FieldInputProps, FieldMetaProps, Form, Formik,
 } from "formik";
@@ -12,18 +12,25 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
+import { PasswordInput } from "~/components/PasswordInput";
 
-type AuthFormValues = {
+type SignupFormValues = {
   email: string;
+  password: string;
 };
 
-const Auth = () => {
+const AuthSignup = () => {
   const [loading, setLoading] = React.useState(false);
 
-  const handleSubmit = async (submittedValues: AuthFormValues) => {
+  const handleSubmit = async (submittedValues: SignupFormValues) => {
     try {
       setLoading(true);
-      const { error } = await supabase.auth.signIn({ email: submittedValues.email });
+      const { error } = await supabase
+        .auth
+        .signUp({
+          email: submittedValues.email,
+          password: submittedValues.password,
+        });
       if (error) throw new Error(error.message);
       alert("Check your email for the login link!");
     } catch (error: any) {
@@ -38,14 +45,18 @@ const Auth = () => {
       .string()
       .email()
       .required(),
+    password: yup
+      .string()
+      .min(8)
+      .required(),
   });
 
   return (
     <Flex direction="column" gap="16px">
-      <Heading>Sign in via magic link</Heading>
+      <Heading>Sign up</Heading>
 
       <Formik
-        initialValues={{ email: "" }}
+        initialValues={{ email: "", password: "" }}
         onSubmit={handleSubmit}
         validationSchema={loginSchema}
       >
@@ -68,6 +79,25 @@ const Auth = () => {
                     {/* <FormHelperText>Keep it very short and sweet!</FormHelperText> */}
                     <FormErrorMessage>{meta.error}</FormErrorMessage>
                   </FormControl>
+
+                )}
+              </Field>
+              <Field name="password">
+                {({ field, meta }: { field: FieldInputProps<any>; meta: FieldMetaProps<any> }) => (
+                  <FormControl
+                    id="password"
+                    isInvalid={meta.touched && !!meta.error}
+                  >
+                    {/* <FormLabel>Password</FormLabel> */}
+                    <PasswordInput
+                      {...field}
+                      value={field.value}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => field.onChange(e)}
+                    />
+                    {/* <FormHelperText>Keep it very short and sweet!</FormHelperText> */}
+                    <FormErrorMessage>{meta.error}</FormErrorMessage>
+                  </FormControl>
+
                 )}
               </Field>
               <Button
@@ -76,7 +106,7 @@ const Auth = () => {
                 isLoading={isSubmitting}
                 type="submit"
               >
-                {loading ? "Loading" : "Send magic link"}
+                {loading ? "Loading" : "Sign up"}
               </Button>
             </Flex>
           </Form>
@@ -86,4 +116,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthSignup;

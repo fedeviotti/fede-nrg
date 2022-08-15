@@ -5,6 +5,7 @@ import {
 import Link from "next/link";
 import LOGO_LIGHT from "~/assets/FEDENRG_LOGO_LIGHT.png";
 import LOGO_DARK from "~/assets/FEDENRG_LOGO_DARK.png";
+import { useAuth } from "~/lib/AuthProvider";
 
 type Props = {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ type Props = {
 const Navbar = ({ children }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const logoSrc = useColorModeValue(LOGO_LIGHT.src, LOGO_DARK.src);
+  const { signOut } = useAuth();
 
   return (
     <Flex direction="column" alignItems="center" width="100vw" height="100vh">
@@ -37,6 +39,9 @@ const Navbar = ({ children }: Props) => {
             Toggle
             {" "}
             {colorMode === "light" ? "Dark" : "Light"}
+          </Button>
+          <Button onClick={signOut}>
+            Sign Out
           </Button>
         </HStack>
       </Flex>
