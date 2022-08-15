@@ -6,7 +6,7 @@ import {
 import { supabase } from "~/lib/initSupabaseClient";
 
 type Props = {
-  user: User | null;
+  user: User;
   signOut: () => void;
 };
 
@@ -25,8 +25,8 @@ const Account = ({ user, signOut }: Props) => {
       setLoading(true);
 
       const updates = {
-        id: user?.id,
-        email: user?.email,
+        id: user.id,
+        email: user.email,
         username: _username,
         website: _website,
         avatar_url: _avatarUrl,
@@ -55,7 +55,7 @@ const Account = ({ user, signOut }: Props) => {
         const { data, error, status } = await supabase
           .from("profiles")
           .select("username, website, avatar_url")
-          .eq("id", user?.id)
+          .eq("id", user.id)
           .single();
 
         if (error && status !== 406) {
@@ -82,7 +82,7 @@ const Account = ({ user, signOut }: Props) => {
         id="email"
         type="text"
         placeholder="Email"
-        value={user?.email}
+        value={user.email}
         disabled
       />
       <Input

@@ -3,11 +3,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import Account from "~/components/Account";
-import { useAuth } from "~/lib/AuthProvider";
-import enforceAuthenticated from "~/components/enforceAuthenticated";
+import { useAuthRedirect } from "~/components/useAuthRedirect";
 
 const Home: NextPage = () => {
-  const { user, signOut } = useAuth();
+  const { user, signOut } = useAuthRedirect();
 
   return user
     ? (
@@ -28,5 +27,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-export const getServerSideProps = enforceAuthenticated();
