@@ -1,13 +1,21 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import AuthSignup from "~/components/AuthSignup";
-import Link from "next/link";
+import Head from "next/head";
 
 const Login = () => (
-  <Flex flexDirection="column" gap={2}>
-    <Link href="/login">Log in</Link>
-    <AuthSignup />
-  </Flex>
+  <>
+    <Head>
+      <title>Sign up</title>
+      <meta name="description" content="Sign up Fede Nrg Application" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <Flex direction="column" gap="8px" width="30%" height="100%">
+      <Box>
+        <AuthSignup />
+      </Box>
+    </Flex>
+  </>
 );
 
 export default Login;

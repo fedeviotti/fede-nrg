@@ -10,7 +10,6 @@ import {
   FormErrorMessage,
   Heading,
   Input,
-  Text,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
@@ -54,8 +53,7 @@ const AuthSignup = () => {
 
   return (
     <Flex direction="column" gap="16px">
-      <Heading>Supabase + Next.js</Heading>
-      <Text>Sign up with email and password</Text>
+      <Heading>Sign up</Heading>
 
       <Formik
         initialValues={{ email: "", password: "" }}

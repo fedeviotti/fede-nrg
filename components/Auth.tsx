@@ -10,7 +10,6 @@ import {
   FormErrorMessage,
   Heading,
   Input,
-  Text,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
 
@@ -43,8 +42,7 @@ const Auth = () => {
 
   return (
     <Flex direction="column" gap="16px">
-      <Heading>Supabase + Next.js</Heading>
-      <Text>Sign in via magic link with your email below</Text>
+      <Heading>Sign in via magic link</Heading>
 
       <Formik
         initialValues={{ email: "" }}
