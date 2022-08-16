@@ -33,9 +33,8 @@ const AuthLogin = () => {
         .signIn({
           email: submittedValues.email,
           password: submittedValues.password,
-        });
+        }, { redirectTo: redirect || "/" });
       if (error) throw new Error(error.message);
-      router.push(redirect || "/");
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {

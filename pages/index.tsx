@@ -1,12 +1,13 @@
 import React from "react";
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import Account from "~/components/Account";
-import { useAuthRedirect } from "~/components/useAuthRedirect";
+import { supabase } from "~/lib/initSupabaseClient";
+import { useAuth } from "~/lib/AuthProvider";
 
 const Home: NextPage = () => {
-  const { user, signOut } = useAuthRedirect();
+  const { user, signOut } = useAuth();
 
   return user
     ? (
@@ -27,3 +28,13 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const { user } = await supabase.auth.api.getUserByCookie(req);
+
+  if (!user) {
+    return { props: {}, redirect: { destination: "/login" } };
+  }
+
+  return { props: { user } };
+};
