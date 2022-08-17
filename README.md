@@ -2,7 +2,19 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First edit the `.npmrc` file adding the following line and replacing `GITHUB_TOKEN` with your Personal Access Token (PAT)
+generated on GitHub:
+
+```bash
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Install the dependencies:
+```bash
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 pnpm run dev
