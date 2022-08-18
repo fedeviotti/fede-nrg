@@ -39,7 +39,7 @@ export const AuthProvider = ({ supabase, ...props }: Props) => {
   React.useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
-        handleAuthChange(event, session);
+        handleAuthChange(event, currentSession);
         if (event === "SIGNED_IN") {
           setSession(currentSession);
           setUser(currentSession?.user ?? null);
