@@ -3,8 +3,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import { NextPageWithLayout } from "~/pages/_app";
 import { MemoryLayout } from "~/layouts/MemoryLayout";
-import { GetServerSideProps } from "next";
-import { supabase } from "~/lib/initSupabaseClient";
+import enforceAuthenticated from "~/lib/enforceAuthenticated";
 
 const Memory: NextPageWithLayout = () => (
   <>
@@ -30,12 +29,4 @@ Memory.getLayout = function getLayout(memory: React.ReactElement) {
 
 export default Memory;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { user } = await supabase.auth.api.getUserByCookie(req);
-
-  if (!user) {
-    return { props: {}, redirect: { destination: "/login?redirect=/memory" } };
-  }
-
-  return { props: { user } };
-};
+export const getServerSideProps = enforceAuthenticated("/memory");

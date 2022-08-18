@@ -2,8 +2,7 @@ import React from "react";
 import { Box, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import { VehicleList } from "~/components/garage/VehicleList";
-import { GetServerSideProps } from "next";
-import { supabase } from "~/lib/initSupabaseClient";
+import enforceAuthenticated from "~/lib/enforceAuthenticated";
 
 const Garage = () => (
   <>
@@ -21,12 +20,4 @@ const Garage = () => (
 
 export default Garage;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { user } = await supabase.auth.api.getUserByCookie(req);
-
-  if (!user) {
-    return { props: {}, redirect: { destination: "/login?redirect=/garage" } };
-  }
-
-  return { props: { user } };
-};
+export const getServerSideProps = enforceAuthenticated("/garage");

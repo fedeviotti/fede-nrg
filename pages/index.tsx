@@ -1,10 +1,10 @@
 import React from "react";
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import Account from "~/components/Account";
-import { supabase } from "~/lib/initSupabaseClient";
 import { useAuth } from "~/lib/AuthProvider";
+import enforceAuthenticated from "~/lib/enforceAuthenticated";
 
 const Home: NextPage = () => {
   const { user, signOut } = useAuth();
@@ -29,12 +29,4 @@ const Home: NextPage = () => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { user } = await supabase.auth.api.getUserByCookie(req);
-
-  if (!user) {
-    return { props: {}, redirect: { destination: "/login" } };
-  }
-
-  return { props: { user } };
-};
+export const getServerSideProps = enforceAuthenticated();
