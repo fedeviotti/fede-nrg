@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { user } = await supabase.auth.api.getUserByCookie(req);
 
   if (!user) {
-    return { props: {}, redirect: { destination: "/login" } };
+    return { props: {}, redirect: { destination: "/login?redirect=/garage" } };
   }
 
   return { props: { user } };
