@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  AuthChangeEvent,
   Session, SupabaseClient, User,
 } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
@@ -21,6 +22,15 @@ type Props = {
   children: React.ReactNode;
 };
 
+async function handleAuthChange(event: AuthChangeEvent, session: Session | null) {
+  await fetch("/api/auth", {
+    method: "POST",
+    headers: new Headers({ "Content-Type": "application/json" }),
+    credentials: "same-origin",
+    body: JSON.stringify({ event, session }),
+  });
+}
+
 export const AuthProvider = ({ supabase, ...props }: Props) => {
   const [session, setSession] = React.useState<Session | null>(null);
   const [user, setUser] = React.useState<User | null>(null);
@@ -29,6 +39,7 @@ export const AuthProvider = ({ supabase, ...props }: Props) => {
   React.useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
+        handleAuthChange(event, currentSession);
         if (event === "SIGNED_IN") {
           setSession(currentSession);
           setUser(currentSession?.user ?? null);

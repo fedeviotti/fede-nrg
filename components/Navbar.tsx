@@ -5,7 +5,7 @@ import {
 import Link from "next/link";
 import LOGO_LIGHT from "~/assets/FEDENRG_LOGO_LIGHT.png";
 import LOGO_DARK from "~/assets/FEDENRG_LOGO_DARK.png";
-import { useAuth } from "~/lib/AuthProvider";
+import { useAuth } from "~/lib/context/AuthProvider";
 
 type Props = {
   children: React.ReactNode;

@@ -14,6 +14,7 @@ import {
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
 import { useRouter } from "next/router";
+import { useAuth } from "~/lib/context/AuthProvider";
 
 type LoginFormValues = {
   email: string;
@@ -24,6 +25,13 @@ const AuthLogin = () => {
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const redirect = router.query.redirect as string;
+  const { session } = useAuth();
+
+  React.useEffect(() => {
+    if (session) {
+      router.push(redirect || "/");
+    }
+  }, [redirect, router, session]);
 
   const handleSubmit = async (submittedValues: LoginFormValues) => {
     try {
@@ -35,7 +43,6 @@ const AuthLogin = () => {
           password: submittedValues.password,
         });
       if (error) throw new Error(error.message);
-      router.push(redirect || "/");
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
