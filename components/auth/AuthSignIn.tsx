@@ -10,11 +10,13 @@ import {
   FormErrorMessage,
   Heading,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
 import { useRouter } from "next/router";
 import { useAuth } from "~/lib/context/AuthProvider";
+import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
 
 type SignInFormValues = {
   email: string;
@@ -26,6 +28,7 @@ const AuthSignIn = () => {
   const router = useRouter();
   const redirect = router.query.redirect as string;
   const { session } = useAuth();
+  const toast = useToast();
 
   React.useEffect(() => {
     if (session) {
@@ -43,8 +46,19 @@ const AuthSignIn = () => {
           password: submittedValues.password,
         });
       if (error) throw new Error(error.message);
+      toast({
+        title: "Sign in",
+        description: "Sign in successful!",
+        status: "success",
+        ...defaultToastOptions,
+      });
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      toast({
+        title: "Sign in",
+        description: error.error_description || error.message,
+        status: "error",
+        ...defaultToastOptions,
+      });
     } finally {
       setLoading(false);
     }

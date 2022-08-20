@@ -1,9 +1,10 @@
 import React from "react";
 import { User } from "@supabase/supabase-js";
 import {
-  Button, ButtonGroup, Flex, Input,
+  Button, ButtonGroup, Flex, Input, useToast,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
+import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
 
 type Props = {
   user: User;
@@ -15,6 +16,7 @@ const Account = ({ user, signOut }: Props) => {
   const [username, setUsername] = React.useState<string | null>(null);
   const [website, setWebsite] = React.useState<string | null>(null);
   const [avatarUrl, setAvatarUrl] = React.useState<string | null>(null);
+  const toast = useToast();
 
   async function updateProfile({ _username, _website, _avatarUrl }: {
     _username: string | null;
@@ -41,7 +43,12 @@ const Account = ({ user, signOut }: Props) => {
         throw new Error(error.message);
       }
     } catch (error: any) {
-      alert(error.message);
+      toast({
+        title: "Account update",
+        description: error.message,
+        status: "error",
+        ...defaultToastOptions,
+      });
     } finally {
       setLoading(false);
     }
@@ -68,13 +75,18 @@ const Account = ({ user, signOut }: Props) => {
           setAvatarUrl(data.avatar_url);
         }
       } catch (error: any) {
-        alert(error.message);
+        toast({
+          title: "Account",
+          description: error.message,
+          status: "error",
+          ...defaultToastOptions,
+        });
       } finally {
         setLoading(false);
       }
     };
     getProfile();
-  }, [user]);
+  }, [toast, user]);
 
   return (
     <Flex direction="column" gap="8px">

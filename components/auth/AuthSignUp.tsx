@@ -10,9 +10,11 @@ import {
   FormErrorMessage,
   Heading,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
+import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
 
 type SignUpFormValues = {
   email: string;
@@ -21,6 +23,7 @@ type SignUpFormValues = {
 
 const AuthSignUp = () => {
   const [loading, setLoading] = React.useState(false);
+  const toast = useToast();
 
   const handleSubmit = async (submittedValues: SignUpFormValues) => {
     try {
@@ -32,8 +35,19 @@ const AuthSignUp = () => {
           password: submittedValues.password,
         });
       if (error) throw new Error(error.message);
+      toast({
+        title: "Sign up",
+        description: "Sign up successful!",
+        status: "success",
+        ...defaultToastOptions,
+      });
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      toast({
+        title: "Sign up",
+        description: error.error_description || error.message,
+        status: "error",
+        ...defaultToastOptions,
+      });
     } finally {
       setLoading(false);
     }
