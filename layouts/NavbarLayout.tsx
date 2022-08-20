@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
-import Navbar from "~/components/Navbar";
+import Navbar from "~/components/navbar/Navbar";
 
 type Props = {
   children: React.ReactNode;

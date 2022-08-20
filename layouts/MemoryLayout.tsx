@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
-import MemoryNavbar from "~/components/MemoryNavbar";
+import MemoryNavbar from "~/components/navbar/MemoryNavbar";
 
 type Props = {
   children: React.ReactNode;
