@@ -4,6 +4,8 @@ import {
   Session, SupabaseClient, User,
 } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
+import { useToast } from "@chakra-ui/react";
+import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
 
 type AuthContextValue = {
   session: Session | null;
@@ -35,6 +37,7 @@ export const AuthProvider = ({ supabase, ...props }: Props) => {
   const [session, setSession] = React.useState<Session | null>(null);
   const [user, setUser] = React.useState<User | null>(null);
   const router = useRouter();
+  const toast = useToast();
 
   React.useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
@@ -60,9 +63,15 @@ export const AuthProvider = ({ supabase, ...props }: Props) => {
     user,
     signOut: () => {
       supabase.auth.signOut();
+      toast({
+        title: "Sign out",
+        description: "Sign out successful!",
+        status: "success",
+        ...defaultToastOptions,
+      });
       router.push("/signIn");
     },
-  }), [router, session, supabase.auth, user]);
+  }), [router, session, supabase.auth, toast, user]);
 
   return (
     <AuthContext.Provider

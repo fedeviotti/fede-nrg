@@ -10,30 +10,43 @@ import {
   FormErrorMessage,
   Heading,
   Input,
+  useToast,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
+import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
 
 type AuthFormValues = {
   email: string;
 };
 
-const Auth = () => {
+const AuthMagicLink = () => {
   const [loading, setLoading] = React.useState(false);
+  const toast = useToast();
 
   const handleSubmit = async (submittedValues: AuthFormValues) => {
     try {
       setLoading(true);
       const { error } = await supabase.auth.signIn({ email: submittedValues.email });
       if (error) throw new Error(error.message);
-      alert("Check your email for the login link!");
+      toast({
+        title: "Sign in",
+        description: "Check your email for the login link!",
+        status: "info",
+        ...defaultToastOptions,
+      });
     } catch (error: any) {
-      alert(error.error_description || error.message);
+      toast({
+        title: "Sign in",
+        description: error.error_description || error.message,
+        status: "error",
+        ...defaultToastOptions,
+      });
     } finally {
       setLoading(false);
     }
   };
 
-  const loginSchema = yup.object().shape({
+  const signInSchema = yup.object().shape({
     email: yup
       .string()
       .email()
@@ -47,7 +60,7 @@ const Auth = () => {
       <Formik
         initialValues={{ email: "" }}
         onSubmit={handleSubmit}
-        validationSchema={loginSchema}
+        validationSchema={signInSchema}
       >
         {({ isSubmitting, isValid, dirty }) => (
           <Form>
@@ -86,4 +99,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthMagicLink;
