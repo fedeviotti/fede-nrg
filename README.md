@@ -3,11 +3,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 First edit the `.npmrc` file adding the following line and replacing `GITHUB_TOKEN` with your Personal Access Token (PAT)
-generated on GitHub:
-
+generated on GitHub.
 ```bash
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
+**Reminder**: To use the proposed syntax, you should define `GITHUB_TOKEN` as environment variable on your computer.
 
 Install the dependencies:
 ```bash
