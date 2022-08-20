@@ -24,7 +24,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "~/themes/theme";
 import { NavbarLayout } from "~/layouts/NavbarLayout";
 import { NextPage } from "next";
-import { AuthProvider } from "~/lib/AuthProvider";
+import { AuthProvider } from "~/lib/context/AuthProvider";
 import { supabase } from "~/lib/initSupabaseClient";
 
 export type NextPageWithLayout = NextPage & {

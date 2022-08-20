@@ -14,7 +14,7 @@ import {
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
 import { useRouter } from "next/router";
-import { useAuth } from "~/lib/AuthProvider";
+import { useAuth } from "~/lib/context/AuthProvider";
 
 type LoginFormValues = {
   email: string;

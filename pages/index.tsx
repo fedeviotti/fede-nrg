@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/react";
 import Account from "~/components/Account";
-import { useAuth } from "~/lib/AuthProvider";
+import { useAuth } from "~/lib/context/AuthProvider";
 import enforceAuthenticated from "~/lib/enforceAuthenticated";
 
 const Home: NextPage = () => {
