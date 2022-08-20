@@ -15,7 +15,7 @@ const enforceAuthenticated: EnforceAuthenticated = (
 
   if (!user) {
     const redirectParam = redirectTo ? `?redirect=${redirectTo}` : "";
-    return { props: {}, redirect: { destination: `/login${redirectParam}` } };
+    return { props: {}, redirect: { destination: `/signIn${redirectParam}` } };
   }
 
   if (inner) {

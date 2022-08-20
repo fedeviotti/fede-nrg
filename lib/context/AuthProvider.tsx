@@ -60,7 +60,7 @@ export const AuthProvider = ({ supabase, ...props }: Props) => {
     user,
     signOut: () => {
       supabase.auth.signOut();
-      router.push("/login");
+      router.push("/signIn");
     },
   }), [router, session, supabase.auth, user]);
 

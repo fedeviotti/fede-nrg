@@ -14,15 +14,15 @@ import {
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
 
-type SignupFormValues = {
+type SignUpFormValues = {
   email: string;
   password: string;
 };
 
-const AuthSignup = () => {
+const AuthSignUp = () => {
   const [loading, setLoading] = React.useState(false);
 
-  const handleSubmit = async (submittedValues: SignupFormValues) => {
+  const handleSubmit = async (submittedValues: SignUpFormValues) => {
     try {
       setLoading(true);
       const { error } = await supabase
@@ -32,7 +32,6 @@ const AuthSignup = () => {
           password: submittedValues.password,
         });
       if (error) throw new Error(error.message);
-      alert("Check your email for the login link!");
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
@@ -40,7 +39,7 @@ const AuthSignup = () => {
     }
   };
 
-  const loginSchema = yup.object().shape({
+  const signUpSchema = yup.object().shape({
     email: yup
       .string()
       .email()
@@ -58,7 +57,7 @@ const AuthSignup = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={handleSubmit}
-        validationSchema={loginSchema}
+        validationSchema={signUpSchema}
       >
         {({ isSubmitting, isValid, dirty }) => (
           <Form>
@@ -116,4 +115,4 @@ const AuthSignup = () => {
   );
 };
 
-export default AuthSignup;
+export default AuthSignUp;

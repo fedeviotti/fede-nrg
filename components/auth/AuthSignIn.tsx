@@ -16,12 +16,12 @@ import { PasswordInput } from "~/components/PasswordInput";
 import { useRouter } from "next/router";
 import { useAuth } from "~/lib/context/AuthProvider";
 
-type LoginFormValues = {
+type SignInFormValues = {
   email: string;
   password: string;
 };
 
-const AuthLogin = () => {
+const AuthSignIn = () => {
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const redirect = router.query.redirect as string;
@@ -33,7 +33,7 @@ const AuthLogin = () => {
     }
   }, [redirect, router, session]);
 
-  const handleSubmit = async (submittedValues: LoginFormValues) => {
+  const handleSubmit = async (submittedValues: SignInFormValues) => {
     try {
       setLoading(true);
       const { error } = await supabase
@@ -50,7 +50,7 @@ const AuthLogin = () => {
     }
   };
 
-  const loginSchema = yup.object().shape({
+  const signInSchema = yup.object().shape({
     email: yup
       .string()
       .email()
@@ -67,7 +67,7 @@ const AuthLogin = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={handleSubmit}
-        validationSchema={loginSchema}
+        validationSchema={signInSchema}
       >
         {({ isSubmitting, isValid, dirty }) => (
           <Form>
@@ -115,7 +115,7 @@ const AuthLogin = () => {
                 isLoading={isSubmitting}
                 type="submit"
               >
-                {loading ? "Loading" : "Login"}
+                {loading ? "Loading" : "Sign in"}
               </Button>
             </Flex>
           </Form>
@@ -125,4 +125,4 @@ const AuthLogin = () => {
   );
 };
 
-export default AuthLogin;
+export default AuthSignIn;
