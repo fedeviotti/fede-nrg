@@ -4,12 +4,14 @@ import {
 } from "formik";
 import * as yup from "yup";
 import {
+  Box,
   Button,
   Flex,
   FormControl,
   FormErrorMessage,
   Heading,
   Input,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
@@ -17,6 +19,7 @@ import { PasswordInput } from "~/components/PasswordInput";
 import { useRouter } from "next/router";
 import { useAuth } from "~/lib/context/AuthProvider";
 import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
+import Link from "next/link";
 
 type SignInFormValues = {
   email: string;
@@ -75,66 +78,78 @@ const AuthSignIn = () => {
   });
 
   return (
-    <Flex direction="column" gap="16px">
+    <Flex direction="column" gap="16px" alignItems="center">
       <Heading>Sign in</Heading>
+      <Heading as="h5" size="sm">Welcome back</Heading>
+      <Heading as="h5" size="sm" fontWeight="normal">Enter your credentials</Heading>
 
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={handleSubmit}
-        validationSchema={signInSchema}
-      >
-        {({ isSubmitting, isValid, dirty }) => (
-          <Form>
-            <Flex direction="column" gap="8px">
-              <Field name="email">
-                {({ field, meta }: { field: FieldInputProps<any>; meta: FieldMetaProps<any> }) => (
-                  <FormControl
-                    id="email"
-                    isInvalid={meta.touched && !!meta.error}
-                  >
-                    {/* <FormLabel>Email</FormLabel> */}
-                    <Input
-                      {...field}
-                      placeholder="Email"
-                      value={field.value}
-                      onChange={(e) => field.onChange(e)}
-                    />
-                    {/* <FormHelperText>Keep it very short and sweet!</FormHelperText> */}
-                    <FormErrorMessage>{meta.error}</FormErrorMessage>
-                  </FormControl>
+      <Box alignSelf="stretch">
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={handleSubmit}
+          validationSchema={signInSchema}
+        >
+          {({ isSubmitting, isValid, dirty }) => (
+            <Form>
+              <Flex direction="column" gap="8px">
+                <Field name="email">
+                  {({ field, meta }: {
+                    field: FieldInputProps<any>;
+                    meta: FieldMetaProps<any>;
+                  }) => (
+                    <FormControl
+                      id="email"
+                      isInvalid={meta.touched && !!meta.error}
+                    >
+                      <Input
+                        {...field}
+                        placeholder="Email"
+                        value={field.value}
+                        onChange={(e) => field.onChange(e)}
+                      />
+                      {/* <FormHelperText>Keep it very short and sweet!</FormHelperText> */}
+                      <FormErrorMessage>{meta.error}</FormErrorMessage>
+                    </FormControl>
 
-                )}
-              </Field>
-              <Field name="password">
-                {({ field, meta }: { field: FieldInputProps<any>; meta: FieldMetaProps<any> }) => (
-                  <FormControl
-                    id="password"
-                    isInvalid={meta.touched && !!meta.error}
-                  >
-                    {/* <FormLabel>Password</FormLabel> */}
-                    <PasswordInput
-                      {...field}
-                      value={field.value}
-                      onChange={(e: ChangeEvent<HTMLInputElement>) => field.onChange(e)}
-                    />
-                    {/* <FormHelperText>Keep it very short and sweet!</FormHelperText> */}
-                    <FormErrorMessage>{meta.error}</FormErrorMessage>
-                  </FormControl>
+                  )}
+                </Field>
+                <Field name="password">
+                  {({ field, meta }: {
+                    field: FieldInputProps<any>;
+                    meta: FieldMetaProps<any>;
+                  }) => (
+                    <FormControl
+                      id="password"
+                      isInvalid={meta.touched && !!meta.error}
+                    >
+                      <PasswordInput
+                        {...field}
+                        value={field.value}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => field.onChange(e)}
+                      />
+                      <FormErrorMessage>{meta.error}</FormErrorMessage>
+                    </FormControl>
 
-                )}
-              </Field>
-              <Button
-                alignSelf="flex-start"
-                disabled={!(isValid && dirty)}
-                isLoading={isSubmitting}
-                type="submit"
-              >
-                {loading ? "Loading" : "Sign in"}
-              </Button>
-            </Flex>
-          </Form>
-        )}
-      </Formik>
+                  )}
+                </Field>
+                <Button
+                  disabled={!(isValid && dirty)}
+                  isLoading={isSubmitting}
+                  type="submit"
+                >
+                  {loading ? "Loading" : "Sign in"}
+                </Button>
+              </Flex>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+      <Link href="/signInMagicLink">
+        <Text fontSize="xs">Sign in with magic Link</Text>
+      </Link>
+      <Link href="/signUp">
+        <Text fontSize="xs">Don&apos;t have an account? Sign up</Text>
+      </Link>
     </Flex>
   );
 };
