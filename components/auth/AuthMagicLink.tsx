@@ -4,16 +4,19 @@ import {
 } from "formik";
 import * as yup from "yup";
 import {
+  Box,
   Button,
   Flex,
   FormControl,
   FormErrorMessage,
   Heading,
-  Input,
+  Input, Link,
   useToast,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
 import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
+import { AuthContainer } from "~/components/auth/AuthContainer";
+import NextLink from "next/link";
 
 type AuthFormValues = {
   email: string;
@@ -54,48 +57,65 @@ const AuthMagicLink = () => {
   });
 
   return (
-    <Flex direction="column" gap="16px">
-      <Heading>Sign in via magic link</Heading>
+    <AuthContainer>
+      <Heading>Sign in with magic link</Heading>
+      <Heading as="h5" size="sm">Welcome back</Heading>
+      <Heading as="h5" size="sm" fontWeight="normal">Enter you email</Heading>
 
-      <Formik
-        initialValues={{ email: "" }}
-        onSubmit={handleSubmit}
-        validationSchema={signInSchema}
-      >
-        {({ isSubmitting, isValid, dirty }) => (
-          <Form>
-            <Flex direction="column" gap="8px">
-              <Field name="email">
-                {({ field, meta }: { field: FieldInputProps<any>; meta: FieldMetaProps<any> }) => (
-                  <FormControl
-                    id="email"
-                    isInvalid={meta.touched && !!meta.error}
-                  >
-                    {/* <FormLabel>Email</FormLabel> */}
-                    <Input
-                      {...field}
-                      placeholder="Email"
-                      value={field.value}
-                      onChange={(e) => field.onChange(e)}
-                    />
-                    {/* <FormHelperText>Keep it very short and sweet!</FormHelperText> */}
-                    <FormErrorMessage>{meta.error}</FormErrorMessage>
-                  </FormControl>
-                )}
-              </Field>
-              <Button
-                alignSelf="flex-start"
-                disabled={!(isValid && dirty)}
-                isLoading={isSubmitting}
-                type="submit"
-              >
-                {loading ? "Loading" : "Send magic link"}
-              </Button>
-            </Flex>
-          </Form>
-        )}
-      </Formik>
-    </Flex>
+      <Box alignSelf="stretch">
+        <Formik
+          initialValues={{ email: "" }}
+          onSubmit={handleSubmit}
+          validationSchema={signInSchema}
+        >
+          {({ isSubmitting, isValid, dirty }) => (
+            <Form>
+              <Flex direction="column" gap="8px">
+                <Field name="email">
+                  {({ field, meta }: {
+                    field: FieldInputProps<any>;
+                    meta: FieldMetaProps<any>;
+                  }) => (
+                    <FormControl
+                      id="email"
+                      isInvalid={meta.touched && !!meta.error}
+                    >
+                      {/* <FormLabel>Email</FormLabel> */}
+                      <Input
+                        {...field}
+                        placeholder="Email"
+                        value={field.value}
+                        onChange={(e) => field.onChange(e)}
+                      />
+                      {/* <FormHelperText>Keep it very short and sweet!</FormHelperText> */}
+                      <FormErrorMessage>{meta.error}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+                <Button
+                  disabled={!(isValid && dirty)}
+                  isLoading={isSubmitting}
+                  type="submit"
+                >
+                  {loading ? "Loading" : "Send magic link"}
+                </Button>
+              </Flex>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+
+      <NextLink href="/signIn" passHref>
+        <Link fontSize="xs" href="/signIn">
+          Sign in with password
+        </Link>
+      </NextLink>
+      <NextLink href="/signUp" passHref>
+        <Link fontSize="xs" href="/signUp">
+          Don&apos;t have an account? Sign up
+        </Link>
+      </NextLink>
+    </AuthContainer>
   );
 };
 
