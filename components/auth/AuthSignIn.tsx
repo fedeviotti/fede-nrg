@@ -10,8 +10,7 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
-  Input,
-  Text,
+  Input, Link,
   useToast,
 } from "@chakra-ui/react";
 import { supabase } from "~/lib/initSupabaseClient";
@@ -19,7 +18,8 @@ import { PasswordInput } from "~/components/PasswordInput";
 import { useRouter } from "next/router";
 import { useAuth } from "~/lib/context/AuthProvider";
 import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
-import Link from "next/link";
+import NextLink from "next/link";
+import { AuthContainer } from "~/components/auth/AuthContainer";
 
 type SignInFormValues = {
   email: string;
@@ -74,11 +74,12 @@ const AuthSignIn = () => {
       .required(),
     password: yup
       .string()
+      .min(8)
       .required(),
   });
 
   return (
-    <Flex direction="column" gap="16px" alignItems="center">
+    <AuthContainer>
       <Heading>Sign in</Heading>
       <Heading as="h5" size="sm">Welcome back</Heading>
       <Heading as="h5" size="sm" fontWeight="normal">Enter your credentials</Heading>
@@ -144,13 +145,18 @@ const AuthSignIn = () => {
           )}
         </Formik>
       </Box>
-      <Link href="/signInMagicLink">
-        <Text fontSize="xs">Sign in with magic Link</Text>
-      </Link>
-      <Link href="/signUp">
-        <Text fontSize="xs">Don&apos;t have an account? Sign up</Text>
-      </Link>
-    </Flex>
+
+      <NextLink href="/signInMagicLink" passHref>
+        <Link fontSize="xs" href="/signInMagicLink">
+          Sign in with magic Link
+        </Link>
+      </NextLink>
+      <NextLink href="/signUp" passHref>
+        <Link fontSize="xs" href="/signUp">
+          Don&apos;t have an account? Sign up
+        </Link>
+      </NextLink>
+    </AuthContainer>
   );
 };
 
