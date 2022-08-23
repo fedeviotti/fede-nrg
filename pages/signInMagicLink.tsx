@@ -1,19 +1,19 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
-import AuthSignIn from "~/components/auth/AuthSignIn";
 import Head from "next/head";
+import AuthMagicLink from "~/components/auth/AuthMagicLink";
 
-const SignIn = () => (
+const SignInMagicLink = () => (
   <>
     <Head>
-      <title>Sign in</title>
-      <meta name="description" content="Sign in" />
+      <title>Sign in with Magic Link</title>
+      <meta name="description" content="Sign in with Magic Link" />
       <link rel="icon" href="/public/favicon.ico" />
     </Head>
     <Flex direction="column" gap="8px" width="30%" height="100%">
-      <AuthSignIn />
+      <AuthMagicLink />
     </Flex>
   </>
 );
 
-export default SignIn;
+export default SignInMagicLink;
