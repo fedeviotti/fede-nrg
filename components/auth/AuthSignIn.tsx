@@ -20,6 +20,7 @@ import { useAuth } from "~/lib/context/AuthProvider";
 import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
 import NextLink from "next/link";
 import { AuthContainer } from "~/components/auth/AuthContainer";
+import { useTranslation } from "next-i18next";
 
 type SignInFormValues = {
   email: string;
@@ -27,6 +28,7 @@ type SignInFormValues = {
 };
 
 const AuthSignIn = () => {
+  const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const redirect = router.query.redirect as string;
@@ -80,7 +82,7 @@ const AuthSignIn = () => {
 
   return (
     <AuthContainer>
-      <Heading>Sign in</Heading>
+      <Heading>{t("auth.sign_in")}</Heading>
       <Heading as="h5" size="sm">Welcome back</Heading>
       <Heading as="h5" size="sm" fontWeight="normal">Enter your credentials</Heading>
 

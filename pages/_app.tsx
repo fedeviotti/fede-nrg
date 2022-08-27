@@ -26,6 +26,7 @@ import { NavbarLayout } from "~/layouts/NavbarLayout";
 import { NextPage } from "next";
 import { AuthProvider } from "~/lib/context/AuthProvider";
 import { supabase } from "~/lib/initSupabaseClient";
+import { appWithTranslation } from "next-i18next";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -47,4 +48,4 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   );
 };
 
-export default MyApp;
+export default appWithTranslation(MyApp);

@@ -2,6 +2,7 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 import AuthSignIn from "~/components/auth/AuthSignIn";
 import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const SignIn = () => (
   <>
@@ -15,5 +16,11 @@ const SignIn = () => (
     </Flex>
   </>
 );
+
+export const getServerSideProps = async ({ locale }: { locale: string }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"])),
+  },
+});
 
 export default SignIn;
