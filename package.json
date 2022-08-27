@@ -25,9 +25,11 @@
     "babel-plugin-superjson-next": "^0.4.3",
     "formik": "^2.2.9",
     "framer-motion": "^6",
+    "i18next": "^21.9.1",
     "next": "12.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^11.18.5",
     "superjson": "^1.9.1",
     "swr": "^1.3.0",
     "yup": "^0.32.11"
