@@ -7,6 +7,7 @@ import LOGO_LIGHT from "~/assets/FEDENRG_LOGO_LIGHT.png";
 import LOGO_DARK from "~/assets/FEDENRG_LOGO_DARK.png";
 import { useAuth } from "~/lib/context/AuthProvider";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 type Props = {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ const Navbar = ({ children }: Props) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const logoSrc = useColorModeValue(LOGO_LIGHT.src, LOGO_DARK.src);
   const { signOut } = useAuth();
+  const router = useRouter();
 
   return (
     <Flex direction="column" alignItems="center" width="100vw" height="100vh">
@@ -34,7 +36,7 @@ const Navbar = ({ children }: Props) => {
           src={logoSrc}
         />
         <HStack spacing={8}>
-          <NextLink href="/signIn" locale="en">
+          <NextLink href={router.asPath} locale="en">
             <Text
               cursor="pointer"
               onClick={() => i18n.changeLanguage("en")}
@@ -42,7 +44,7 @@ const Navbar = ({ children }: Props) => {
               EN
             </Text>
           </NextLink>
-          <NextLink href="/signIn" locale="it">
+          <NextLink href={router.asPath} locale="it">
             <Text
               cursor="pointer"
               onClick={() => i18n.changeLanguage("it")}

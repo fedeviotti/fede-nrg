@@ -10,12 +10,13 @@ const enforceAuthenticated: EnforceAuthenticated = (
   redirectTo,
   inner,
 ) => async (context) => {
-  const { req } = context;
+  const { req, locale, defaultLocale } = context;
   const { user } = await supabase.auth.api.getUserByCookie(req);
 
   if (!user) {
     const redirectParam = redirectTo ? `?redirect=${redirectTo}` : "";
-    return { props: {}, redirect: { destination: `/signIn${redirectParam}` } };
+    const localePath = locale === defaultLocale ? "" : `/${locale}`;
+    return { props: {}, redirect: { destination: `${localePath}/signIn${redirectParam}` } };
   }
 
   if (inner) {
