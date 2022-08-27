@@ -28,7 +28,7 @@ type SignInFormValues = {
 };
 
 const AuthSignIn = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const redirect = router.query.redirect as string;

@@ -1,27 +1,17 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import enCommon from "./locales/en/common.json";
+import itCommon from "./locales/it/common.json";
 
 // the translations
 // (tip move them in a JSON file and import them,
 // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
   en: {
-    translation: {
-      auth: {
-        signIn: {
-          title: "Sign in",
-        }
-      }
-    }
+    common: enCommon
   },
   it: {
-    translation: {
-      auth: {
-        signIn: {
-          title: "Accedi",
-        }
-      }
-    }
+    common: itCommon
   }
 };
 
