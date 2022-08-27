@@ -1,5 +1,9 @@
 {
   "auth": {
-    "sign_in": "Accedi"
+    "signIn": {
+      "title": "Accedi",
+      "subTitle": "Bentornato!",
+      "description": "Inserisci le tue credenziali."
+    }
   }
 }

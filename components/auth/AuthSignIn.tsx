@@ -82,9 +82,9 @@ const AuthSignIn = () => {
 
   return (
     <AuthContainer>
-      <Heading>{t("auth.sign_in")}</Heading>
-      <Heading as="h5" size="sm">Welcome back</Heading>
-      <Heading as="h5" size="sm" fontWeight="normal">Enter your credentials</Heading>
+      <Heading>{t("auth.signIn.title")}</Heading>
+      <Heading as="h5" size="sm">{t("auth.signIn.subTitle")}</Heading>
+      <Heading as="h5" size="sm" fontWeight="normal">{t("auth.signIn.description")}</Heading>
 
       <Box alignSelf="stretch">
         <Formik
