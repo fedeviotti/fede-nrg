@@ -21,9 +21,10 @@ import "@fontsource/poppins/900-italic.css";
 import React from "react";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
+import "~/i18n";
 import theme from "~/themes/theme";
-import { NavbarLayout } from "~/layouts/NavbarLayout";
 import { NextPage } from "next";
+import { NavbarLayout } from "~/layouts/NavbarLayout";
 import { AuthProvider } from "~/lib/context/AuthProvider";
 import { supabase } from "~/lib/initSupabaseClient";
 

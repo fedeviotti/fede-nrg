@@ -13,6 +13,7 @@ import {
   Input, Link,
   useToast,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "~/lib/initSupabaseClient";
 import { PasswordInput } from "~/components/PasswordInput";
 import { useRouter } from "next/router";
@@ -27,6 +28,7 @@ type SignInFormValues = {
 };
 
 const AuthSignIn = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const redirect = router.query.redirect as string;
@@ -80,7 +82,7 @@ const AuthSignIn = () => {
 
   return (
     <AuthContainer>
-      <Heading>Sign in</Heading>
+      <Heading>{t("auth.signIn.title")}</Heading>
       <Heading as="h5" size="sm">Welcome back</Heading>
       <Heading as="h5" size="sm" fontWeight="normal">Enter your credentials</Heading>
 
