@@ -4,7 +4,7 @@ const i18nextConfig = {
   i18n: {
     locales: ['en', 'it'],
     defaultLocale: 'it',
-    localePath: path.resolve('./public/locales')
+    localePath: path.resolve("./public/locales"),
   },
 };
 
