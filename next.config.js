@@ -6,6 +6,15 @@ const nextConfig = {
     locales: ["en", "it"],
     defaultLocale: "it",
     localeDetection: false
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: true
+      }
+    ]
   }
 }
 

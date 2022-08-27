@@ -52,7 +52,7 @@ const Navbar = ({ children }: Props) => {
               IT
             </Text>
           </NextLink>
-          <NextLink href="/">Home</NextLink>
+          <NextLink href="/dashboard">Dashboard</NextLink>
           <NextLink href="/garage">Garage</NextLink>
           <NextLink href="/memory">Memory</NextLink>
           <Button onClick={toggleColorMode} variant="outline">

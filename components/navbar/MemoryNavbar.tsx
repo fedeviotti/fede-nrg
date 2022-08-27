@@ -30,7 +30,7 @@ const MemoryNavbar = ({ children }: Props) => {
           src={logoSrc}
         />
         <HStack spacing={8}>
-          <Link href="/">Home</Link>
+          <Link href="/dashboard">Dashboard</Link>
         </HStack>
       </Flex>
       {children}

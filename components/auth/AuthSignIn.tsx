@@ -37,7 +37,7 @@ const AuthSignIn = () => {
 
   React.useEffect(() => {
     if (session) {
-      router.push(redirect || "/");
+      router.push(redirect || "/dashboard");
     }
   }, [redirect, router, session]);
 
