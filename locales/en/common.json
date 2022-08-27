@@ -1,7 +1,9 @@
 {
   "auth": {
     "signIn": {
-      "title": "Sign in"
+      "title": "Sign in",
+      "subTitle": "Welcome back!",
+      "description": "Enter your credentials."
     }
   }
 }

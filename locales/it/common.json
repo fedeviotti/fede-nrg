@@ -1,7 +1,9 @@
 {
   "auth": {
     "signIn": {
-      "title": "Accedi"
+      "title": "Accedi",
+      "subTitle": "Bentornato!",
+      "description": "Inserisci le tue credenziali"
     }
   }
 }
