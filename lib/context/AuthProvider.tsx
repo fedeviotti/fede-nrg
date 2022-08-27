@@ -69,7 +69,7 @@ export const AuthProvider = ({ supabase, ...props }: Props) => {
         status: "success",
         ...defaultToastOptions,
       });
-      router.push("/signIn");
+      router.push("/signIn?redirect=/dashboard");
     },
   }), [router, session, supabase.auth, toast, user]);
 
