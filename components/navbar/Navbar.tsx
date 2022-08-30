@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Button, Flex, HStack, Image, Text, useColorMode, useColorModeValue,
+  Button, Flex, HStack, Image, Select, useColorMode, useColorModeValue,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import LOGO_LIGHT from "~/assets/FEDENRG_LOGO_LIGHT.png";
@@ -15,10 +15,18 @@ type Props = {
 
 const Navbar = ({ children }: Props) => {
   const { i18n } = useTranslation();
+  const router = useRouter();
+  const { signOut } = useAuth();
   const { colorMode, toggleColorMode } = useColorMode();
   const logoSrc = useColorModeValue(LOGO_LIGHT.src, LOGO_DARK.src);
-  const { signOut } = useAuth();
-  const router = useRouter();
+
+  const handleChange = React.useCallback(async (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const { value: locale } = event.target;
+    await router.push(router.asPath, router.asPath, { locale });
+    await i18n.changeLanguage(locale);
+  }, [i18n, router]);
 
   return (
     <Flex direction="column" alignItems="center" width="100vw" height="100vh">
@@ -36,25 +44,18 @@ const Navbar = ({ children }: Props) => {
           src={logoSrc}
         />
         <HStack spacing={8}>
-          <NextLink href={router.asPath} locale="en">
-            <Text
-              cursor="pointer"
-              onClick={() => i18n.changeLanguage("en")}
-            >
-              EN
-            </Text>
-          </NextLink>
-          <NextLink href={router.asPath} locale="it">
-            <Text
-              cursor="pointer"
-              onClick={() => i18n.changeLanguage("it")}
-            >
-              IT
-            </Text>
-          </NextLink>
           <NextLink href="/dashboard">Dashboard</NextLink>
           <NextLink href="/garage">Garage</NextLink>
           <NextLink href="/memory">Memory</NextLink>
+          <Select
+            placeholder="Language"
+            width="75px"
+            value={router.locale}
+            onChange={handleChange}
+          >
+            <option value="it">IT</option>
+            <option value="en">EN</option>
+          </Select>
           <Button onClick={toggleColorMode} variant="outline">
             Toggle
             {" "}
