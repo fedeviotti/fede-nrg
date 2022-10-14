@@ -52,14 +52,14 @@ const AuthSignIn = () => {
         });
       if (error) throw new Error(error.message);
       toast({
-        title: "Sign in",
-        description: "Sign in successful!",
+        title: t("auth.sign_in.toast.title"),
+        description: t("auth.sign_in.toast.success"),
         status: "success",
         ...defaultToastOptions,
       });
     } catch (error: any) {
       toast({
-        title: "Sign in",
+        title: t("auth.sign_in.toast.title"),
         description: error.error_description || error.message,
         status: "error",
         ...defaultToastOptions,
@@ -82,9 +82,9 @@ const AuthSignIn = () => {
 
   return (
     <AuthContainer>
-      <Heading>{t("auth.signIn.title")}</Heading>
-      <Heading as="h5" size="sm">{t("auth.signIn.subTitle")}</Heading>
-      <Heading as="h5" size="sm" fontWeight="normal">{t("auth.signIn.description")}</Heading>
+      <Heading>{t("auth.sign_in.title")}</Heading>
+      <Heading as="h5" size="sm">{t("auth.sign_in.sub_title")}</Heading>
+      <Heading as="h5" size="sm" fontWeight="normal">{t("auth.sign_in.description")}</Heading>
 
       <Box alignSelf="stretch">
         <Formik
@@ -106,7 +106,7 @@ const AuthSignIn = () => {
                     >
                       <Input
                         {...field}
-                        placeholder="Email"
+                        placeholder={t("auth.sign_in.form.email")}
                         value={field.value}
                         onChange={(e) => field.onChange(e)}
                       />
@@ -140,7 +140,7 @@ const AuthSignIn = () => {
                   isLoading={isSubmitting}
                   type="submit"
                 >
-                  {loading ? "Loading" : "Sign in"}
+                  {loading ? t("common.loading") : t("auth.sign_in.title")}
                 </Button>
               </Flex>
             </Form>
@@ -150,12 +150,12 @@ const AuthSignIn = () => {
 
       <NextLink href="/signInMagicLink" passHref>
         <Link fontSize="xs" href="/signInMagicLink">
-          Sign in with magic Link
+          {t("auth.sign_in.magic_link")}
         </Link>
       </NextLink>
       <NextLink href="/signUp" passHref>
         <Link fontSize="xs" href="/signUp">
-          Don&apos;t have an account? Sign up
+          {t("auth.sign_in.no_account")}
         </Link>
       </NextLink>
     </AuthContainer>

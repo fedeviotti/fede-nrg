@@ -1,9 +1,26 @@
 {
   "auth": {
-    "signIn": {
+    "sign_in": {
       "title": "Sign in",
-      "subTitle": "Welcome back!",
-      "description": "Enter your credentials."
+      "sub_title": "Welcome back!",
+      "description": "Enter your credentials.",
+      "toast": {
+        "title": "Sign in",
+        "success": "Sign in successful!"
+      },
+      "form": {
+        "email": "Email"
+      },
+      "magic_link": "Sign in with Magic Link",
+      "no_account": "Don't have an account? Sign up"
+    }
+  },
+  "common": {
+    "loading": "Loading",
+    "hide": "Hide",
+    "show": "Show",
+    "field": {
+      "password": "Enter Password"
     }
   }
 }

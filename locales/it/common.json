@@ -1,9 +1,26 @@
 {
   "auth": {
-    "signIn": {
+    "sign_in": {
       "title": "Accedi",
-      "subTitle": "Bentornato!",
-      "description": "Inserisci le tue credenziali"
+      "sub_title": "Bentornato!",
+      "description": "Inserisci le tue credenziali",
+      "toast": {
+        "title": "Accesso",
+        "success": "Accesso effettuato con successo"
+      },
+      "form": {
+        "email": "Email"
+      },
+      "magic_link": "Accedi con Magic Link",
+      "no_account": "Non hai un account? Registrati"
+    }
+  },
+  "common": {
+    "loading": "Caricamento",
+    "hide": "Nascondi",
+    "show": "Mostra",
+    "field": {
+      "password": "Inserisci Password"
     }
   }
 }
