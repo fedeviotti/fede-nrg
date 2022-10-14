@@ -149,7 +149,7 @@ const AuthSignIn = () => {
       </Box>
 
       <NextLink href="/signInMagicLink" passHref>
-        <Link fontSize="xs" href="/signInMagicLink">
+        <Link fontSize="xs" href="/signInMagicLink" mt={8}>
           {t("auth.sign_in.magic_link")}
         </Link>
       </NextLink>

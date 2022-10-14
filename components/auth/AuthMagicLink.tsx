@@ -106,7 +106,7 @@ const AuthMagicLink = () => {
       </Box>
 
       <NextLink href="/signIn" passHref>
-        <Link fontSize="xs" href="/signIn">
+        <Link fontSize="xs" href="/signIn" mt="80px">
           Sign in with password
         </Link>
       </NextLink>

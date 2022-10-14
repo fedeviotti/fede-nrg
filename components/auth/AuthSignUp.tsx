@@ -139,7 +139,7 @@ const AuthSignUp = () => {
       </Box>
 
       <NextLink href="/signIn" passHref>
-        <Link fontSize="xs" href="/signIn">
+        <Link fontSize="xs" href="/signIn" mt={8}>
           Already registered? Login
         </Link>
       </NextLink>

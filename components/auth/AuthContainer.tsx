@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const AuthContainer = ({ children }: Props) => (
-  <Flex direction="column" gap="16px" alignItems="center">
+  <Flex direction="column" gap={4} alignItems="center">
     {children}
   </Flex>
 );
