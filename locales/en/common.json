@@ -32,6 +32,7 @@
         "description": "Add information about your vehicle",
         "field": {
           "name": "Nome",
+          "description": "Description",
           "brand": "Brand",
           "model": "Model",
           "year": "Year",

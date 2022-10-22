@@ -32,6 +32,7 @@
         "description": "Inserisci le informazioni del veicolo",
         "field": {
           "name": "Nome",
+          "description": "Descrizione",
           "brand": "Marca",
           "model": "Modello",
           "year": "Anno",
