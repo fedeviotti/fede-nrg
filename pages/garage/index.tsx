@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import { VehicleList } from "~/components/garage/VehicleList";
+import { VehicleForm } from "~/components/garage/VehicleForm";
 import enforceAuthenticated from "~/lib/enforceAuthenticated";
 
 const Garage = () => (
@@ -13,6 +14,7 @@ const Garage = () => (
     </Head>
     <Box display="flex" flexDirection="column" gap="16px" alignItems="center">
       <Heading as="h2" size="xl" fontWeight="semibold">Garage Manager</Heading>
+      <VehicleForm />
       <VehicleList />
     </Box>
   </>
