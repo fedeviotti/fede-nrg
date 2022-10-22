@@ -22,5 +22,38 @@
     "field": {
       "password": "Enter Password"
     }
+  },
+  "garage": {
+    "title": "Garage",
+    "sub_title": "Gestisci i tuoi veicoli",
+    "description": "Gestisci i tuoi veicoli",
+    "add_vehicle": "Aggiungi Veicolo",
+    "vehicle": {
+      "title": "Veicolo",
+      "sub_title": "Gestisci il tuo veicolo",
+      "description": "Gestisci il tuo veicolo",
+      "edit": "Modifica",
+      "delete": "Elimina",
+      "delete_confirmation": "Sei sicuro di voler eliminare questo veicolo?",
+      "delete_success": "Veicolo eliminato con successo",
+      "delete_error": "Errore durante l'eliminazione del veicolo",
+      "form": {
+        "title": "*Vehicle",
+        "sub_title": "Aggiungi un nuovo veicolo",
+        "description": "Aggiungi un nuovo veicolo",
+        "name": "Nome",
+        "brand": "Marca",
+        "model": "Modello",
+        "year": "Anno",
+        "plate": "Targa",
+        "vin": "VIN",
+        "toast": {
+          "title": "Veicolo",
+          "success": "Veicolo aggiunto con successo",
+          "error": "Errore durante l'aggiunta del veicolo"
+        },
+        "cta": "*Insert"
+      }
+    }
   }
 }
