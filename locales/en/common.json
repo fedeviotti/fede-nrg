@@ -24,35 +24,27 @@
     }
   },
   "garage": {
-    "title": "Garage",
-    "sub_title": "Gestisci i tuoi veicoli",
-    "description": "Gestisci i tuoi veicoli",
-    "add_vehicle": "Aggiungi Veicolo",
+    "title": "Garage Manager",
+    "description": "Manage your vehicles",
     "vehicle": {
-      "title": "Veicolo",
-      "sub_title": "Gestisci il tuo veicolo",
-      "description": "Gestisci il tuo veicolo",
-      "edit": "Modifica",
-      "delete": "Elimina",
-      "delete_confirmation": "Sei sicuro di voler eliminare questo veicolo?",
-      "delete_success": "Veicolo eliminato con successo",
-      "delete_error": "Errore durante l'eliminazione del veicolo",
-      "form": {
-        "title": "*Vehicle",
-        "sub_title": "Aggiungi un nuovo veicolo",
-        "description": "Aggiungi un nuovo veicolo",
-        "name": "Nome",
-        "brand": "Marca",
-        "model": "Modello",
-        "year": "Anno",
-        "plate": "Targa",
-        "vin": "VIN",
-        "toast": {
-          "title": "Veicolo",
-          "success": "Veicolo aggiunto con successo",
-          "error": "Errore durante l'aggiunta del veicolo"
+      "create_form": {
+        "title": "Add Vehicle",
+        "description": "Add information about your vehicle",
+        "field": {
+          "name": "Nome",
+          "brand": "Brand",
+          "model": "Model",
+          "year": "Year",
+          "plate": "Plate",
+          "color": "Color",
+          "notes": "notes"
         },
-        "cta": "*Insert"
+        "cta": "Add Vehicle",
+        "toast": {
+          "title": "Add Vehicle",
+          "success": "Vehicle added successfully!",
+          "error": "Error adding vehicle"
+        }
       }
     }
   }
