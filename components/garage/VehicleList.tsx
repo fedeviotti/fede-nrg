@@ -1,7 +1,9 @@
 import React from "react";
 import { supabase } from "~/lib/initSupabaseClient";
 import useSWR, { Fetcher, Key } from "swr";
-import { Box, Stack } from "@chakra-ui/react";
+import {
+  Box, Grid, GridItem,
+} from "@chakra-ui/react";
 import { VehicleCard } from "~/components/garage/VehicleCard";
 import { ExtendedVehicle } from "~/types/garage/vehicle";
 
@@ -17,11 +19,13 @@ export const VehicleList = () => {
   if (!vehicles) return <Box>Loading ...</Box>;
 
   return (
-    <Stack direction="row">
+    <Grid templateColumns="repeat(3, 1fr)" gap={16}>
       {/* <pre>{JSON.stringify(vehicles, null, 2)}</pre> */}
       {vehicles?.map((vehicle) => (
-        <VehicleCard key={Number(vehicle.id)} vehicle={vehicle} />
+        <GridItem key={vehicle.id}>
+          <VehicleCard key={Number(vehicle.id)} vehicle={vehicle} />
+        </GridItem>
       ))}
-    </Stack>
+    </Grid>
   );
 };

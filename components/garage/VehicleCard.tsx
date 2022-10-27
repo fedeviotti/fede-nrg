@@ -14,7 +14,7 @@ export const VehicleCard = ({ vehicle }: Props) => {
   const imageSrc = useColorModeValue(BIKE_IMAGE_LIGHT.src, BIKE_IMAGE_DARK.src);
 
   return (
-    <Center px={8}>
+    <Center>
       <Box
         role="group"
         p={8}

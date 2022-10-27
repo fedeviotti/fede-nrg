@@ -1,13 +1,16 @@
 import React from "react";
 import {
-  Box, Button, Flex, Heading, useToast, Text,
+  Button, Flex, Heading, useToast, Text, Input,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import * as yup from "yup";
-import { Field, Form, Formik } from "formik";
+import {
+  Field, Form, Formik, FormikHelpers,
+} from "formik";
 import { supabase } from "~/lib/initSupabaseClient";
 import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
 import { useAuth } from "~/lib/context/AuthProvider";
+import { useSWRConfig } from "swr";
 
 type VehicleFormValues = {
   name: string;
@@ -32,8 +35,12 @@ export const VehicleForm = () => {
   const { t } = useTranslation("common");
   const toast = useToast();
   const { user } = useAuth();
+  const { mutate } = useSWRConfig();
 
-  const handleSubmit = React.useCallback(async (values: VehicleFormValues) => {
+  const handleSubmit = React.useCallback(async (
+    values: VehicleFormValues,
+    helpers: FormikHelpers<VehicleFormValues>,
+  ) => {
     const { data, error } = await supabase
       .from("vehicles")
       .insert([
@@ -54,6 +61,8 @@ export const VehicleForm = () => {
         status: "success",
         ...defaultToastOptions,
       });
+      await mutate(`/api/vehicles/${user?.id}`);
+      helpers.resetForm();
     }
     if (error) {
       toast({
@@ -63,11 +72,18 @@ export const VehicleForm = () => {
         ...defaultToastOptions,
       });
     }
-  }, [t, toast, user?.id]);
+  }, [mutate, t, toast, user?.id]);
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" p="6">
-      <Heading>{t("garage.vehicle.create_form.title")}</Heading>
+    <Flex
+      p={6}
+      gap={4}
+      direction="column"
+      borderWidth="1px"
+      borderRadius="lg"
+      w="50%"
+    >
+      <Heading as="h3" size="md">{t("garage.vehicle.create_form.title")}</Heading>
       <Text fontSize="md">{t("garage.vehicle.create_form.description")}</Text>
       <Formik
         initialValues={initialValues}
@@ -76,12 +92,14 @@ export const VehicleForm = () => {
       >
         {({ isSubmitting, isValid }) => (
           <Form id="create-vehicle">
-            <Flex direction="column" gap="8px">
+            <Flex direction="column" gap={4}>
               <Field
+                as={Input}
                 name="name"
                 placeholder={t("garage.vehicle.create_form.field.name")}
               />
               <Field
+                as={Input}
                 name="description"
                 placeholder={t("garage.vehicle.create_form.field.description")}
               />
@@ -97,6 +115,6 @@ export const VehicleForm = () => {
           </Form>
         )}
       </Formik>
-    </Box>
+    </Flex>
   );
 };
