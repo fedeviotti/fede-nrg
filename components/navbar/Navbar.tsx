@@ -28,7 +28,7 @@ const Navbar = () => {
     <Flex
       width="100%"
       px="24px"
-      py="16px"
+      py="12px"
       justifyContent="space-between"
       boxShadow={colorMode === "light" ? "rgba(0, 0, 0, .05) 0px 1px 2px" : "rgba(255, 255, 255, .1) 0px 1px 2px"}
     >
