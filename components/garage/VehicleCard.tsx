@@ -4,6 +4,7 @@ import {
 } from "@chakra-ui/react";
 import { ExtendedVehicle } from "~/types/garage/vehicle";
 import { useVehicleCardImage } from "~/components/garage/hooks/useVehicleCardImage";
+import { useTagColor } from "~/components/garage/hooks/useTagColor";
 
 type Props = {
   vehicle: ExtendedVehicle;
@@ -11,6 +12,7 @@ type Props = {
 
 export const VehicleCard = ({ vehicle }: Props) => {
   const imageSrc = useVehicleCardImage(vehicle.type);
+  const tagColor = useTagColor(vehicle.type);
 
   return (
     <Center>
@@ -35,9 +37,12 @@ export const VehicleCard = ({ vehicle }: Props) => {
           src={imageSrc}
         />
         <Stack pt={8} align="center" spacing={6}>
-          <Tag size="md" key="md" variant="solid" colorScheme="brand" textTransform="uppercase">
-            {vehicle.type.name}
-          </Tag>
+          {vehicle.type.name
+            && (
+            <Tag size="md" key="md" variant="solid" colorScheme={tagColor} textTransform="uppercase">
+              {vehicle.type.name}
+            </Tag>
+            )}
           <Heading fontSize="2xl" fontFamily="body" fontWeight={500}>
             {vehicle.name}
           </Heading>
