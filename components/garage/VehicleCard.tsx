@@ -3,15 +3,14 @@ import {
   Box, Center, Heading, Image, Stack, Tag, useColorModeValue,
 } from "@chakra-ui/react";
 import { ExtendedVehicle } from "~/types/garage/vehicle";
-import BIKE_IMAGE_DARK from "~/assets/garage/bicycle-9628-dark.svg";
-import BIKE_IMAGE_LIGHT from "~/assets/garage/bicycle-9628-light.svg";
+import { useVehicleCardImage } from "~/components/garage/hooks/useVehicleCardImage";
 
 type Props = {
   vehicle: ExtendedVehicle;
 };
 
 export const VehicleCard = ({ vehicle }: Props) => {
-  const imageSrc = useColorModeValue(BIKE_IMAGE_LIGHT.src, BIKE_IMAGE_DARK.src);
+  const imageSrc = useVehicleCardImage(vehicle.type);
 
   return (
     <Center>

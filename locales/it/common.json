@@ -33,6 +33,7 @@
         "field": {
           "name": "Nome",
           "description": "Descrizione",
+          "type": "Tipologia",
           "brand": "Marca",
           "model": "Modello",
           "year": "Anno",

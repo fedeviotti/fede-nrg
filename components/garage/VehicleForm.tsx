@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Button, Flex, Heading, useToast, Text, Input,
+  Button, Flex, Heading, useToast, Text, Input, Select,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import * as yup from "yup";
@@ -15,6 +15,7 @@ import { useSWRConfig } from "swr";
 type VehicleFormValues = {
   name: string;
   description: string;
+  type: number;
 };
 
 const createVehicleSchema = yup.object().shape({
@@ -24,11 +25,15 @@ const createVehicleSchema = yup.object().shape({
   description: yup
     .string()
     .required(),
+  type: yup
+    .string()
+    .required(),
 });
 
 const initialValues = {
   name: "",
   description: "",
+  type: 0,
 };
 
 export const VehicleForm = () => {
@@ -50,7 +55,7 @@ export const VehicleForm = () => {
           created_at: new Date(),
           updated_at: new Date(),
           is_owned: true,
-          type_id: 7,
+          type_id: values.type,
           owner_id: user?.id,
         },
       ]);
@@ -103,6 +108,14 @@ export const VehicleForm = () => {
                 name="description"
                 placeholder={t("garage.vehicle.create_form.field.description")}
               />
+              <Field
+                as={Select}
+                name="type"
+                placeholder={t("garage.vehicle.create_form.field.type")}
+              >
+                <option value="7">Bike</option>
+                <option value="8">Car</option>
+              </Field>
               <Button
                 type="submit"
                 form="create-vehicle"
