@@ -18,8 +18,8 @@ export const VehicleCard = ({ vehicle }: Props) => {
     <Center>
       <Box
         role="group"
-        p={8}
-        maxW="330px"
+        p={6}
+        minWidth="200px"
         w="full"
         bg={useColorModeValue("white", "gray.800")}
         pos="relative"
@@ -31,8 +31,6 @@ export const VehicleCard = ({ vehicle }: Props) => {
         <Image
           alt="Vehicle detail card"
           rounded="lg"
-          height={230}
-          width={282}
           objectFit="cover"
           src={imageSrc}
         />

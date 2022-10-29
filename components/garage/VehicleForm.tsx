@@ -86,7 +86,7 @@ export const VehicleForm = () => {
       direction="column"
       borderWidth="1px"
       borderRadius="lg"
-      w="50%"
+      minWidth="400px"
     >
       <Heading as="h3" size="md">{t("garage.vehicle.create_form.title")}</Heading>
       <Text fontSize="md">{t("garage.vehicle.create_form.description")}</Text>
