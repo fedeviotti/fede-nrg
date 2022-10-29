@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Navbar from "~/components/navbar/Navbar";
+import { Footer } from "~/components/Footer";
 
 type Props = {
   children: React.ReactNode;
@@ -18,6 +19,6 @@ export const NavbarLayout = ({ children }: Props) => (
     >
       {children}
     </Flex>
-    <Box>Footer</Box>
+    <Footer />
   </>
 );
