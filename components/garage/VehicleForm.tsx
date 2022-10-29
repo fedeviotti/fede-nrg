@@ -15,7 +15,7 @@ import { useSWRConfig } from "swr";
 type VehicleFormValues = {
   name: string;
   description: string;
-  type: number;
+  type: string;
 };
 
 const createVehicleSchema = yup.object().shape({
@@ -33,7 +33,7 @@ const createVehicleSchema = yup.object().shape({
 const initialValues = {
   name: "",
   description: "",
-  type: 0,
+  type: "",
 };
 
 export const VehicleForm = () => {
@@ -55,7 +55,7 @@ export const VehicleForm = () => {
           created_at: new Date(),
           updated_at: new Date(),
           is_owned: true,
-          type_id: values.type,
+          type_id: Number(values.type),
           owner_id: user?.id,
         },
       ]);
@@ -94,6 +94,7 @@ export const VehicleForm = () => {
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={createVehicleSchema}
+        validateOnMount
       >
         {({ isSubmitting, isValid }) => (
           <Form id="create-vehicle">
