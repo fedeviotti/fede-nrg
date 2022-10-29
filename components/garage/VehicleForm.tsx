@@ -96,7 +96,7 @@ export const VehicleForm = () => {
         validationSchema={createVehicleSchema}
         validateOnMount
       >
-        {({ isSubmitting, isValid }) => (
+        {({ isSubmitting, isValid, dirty }) => (
           <Form id="create-vehicle">
             <Flex direction="column" gap={4}>
               <Field
@@ -121,7 +121,7 @@ export const VehicleForm = () => {
                 type="submit"
                 form="create-vehicle"
                 isLoading={isSubmitting}
-                isDisabled={!isValid}
+                isDisabled={!isValid || !dirty}
               >
                 {t("garage.vehicle.create_form.cta")}
               </Button>
