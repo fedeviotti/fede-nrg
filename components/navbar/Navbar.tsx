@@ -9,11 +9,7 @@ import { useAuth } from "~/lib/context/AuthProvider";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const Navbar = ({ children }: Props) => {
+const Navbar = () => {
   const { i18n } = useTranslation();
   const router = useRouter();
   const { signOut } = useAuth();
@@ -29,44 +25,41 @@ const Navbar = ({ children }: Props) => {
   }, [i18n, router]);
 
   return (
-    <Flex direction="column" alignItems="center" width="100vw" height="100vh">
-      <Flex
-        width="100%"
-        px="24px"
-        py="16px"
-        justifyContent="space-between"
-        boxShadow={colorMode === "light" ? "rgba(0, 0, 0, .05) 0px 1px 2px" : "rgba(255, 255, 255, .1) 0px 1px 2px"}
-      >
-        <Image
-          alt="FedeNrg Logo"
-          height={10}
-          objectFit="cover"
-          src={logoSrc}
-        />
-        <HStack spacing={8}>
-          <NextLink href="/dashboard">Dashboard</NextLink>
-          <NextLink href="/garage">Garage</NextLink>
-          <NextLink href="/memory">Memory</NextLink>
-          <Select
-            placeholder="Language"
-            width="75px"
-            value={router.locale}
-            onChange={handleChange}
-          >
-            <option value="it">IT</option>
-            <option value="en">EN</option>
-          </Select>
-          <Button onClick={toggleColorMode} variant="outline">
-            Toggle
-            {" "}
-            {colorMode === "light" ? "Dark" : "Light"}
-          </Button>
-          <Button onClick={signOut}>
-            Sign Out
-          </Button>
-        </HStack>
-      </Flex>
-      {children}
+    <Flex
+      width="100%"
+      px="24px"
+      py="16px"
+      justifyContent="space-between"
+      boxShadow={colorMode === "light" ? "rgba(0, 0, 0, .05) 0px 1px 2px" : "rgba(255, 255, 255, .1) 0px 1px 2px"}
+    >
+      <Image
+        alt="FedeNrg Logo"
+        height={10}
+        objectFit="cover"
+        src={logoSrc}
+      />
+      <HStack spacing={8}>
+        <NextLink href="/dashboard">Dashboard</NextLink>
+        <NextLink href="/garage">Garage</NextLink>
+        <NextLink href="/memory">Memory</NextLink>
+        <Select
+          placeholder="Language"
+          width="75px"
+          value={router.locale}
+          onChange={handleChange}
+        >
+          <option value="it">IT</option>
+          <option value="en">EN</option>
+        </Select>
+        <Button onClick={toggleColorMode} variant="outline">
+          Toggle
+          {" "}
+          {colorMode === "light" ? "Dark" : "Light"}
+        </Button>
+        <Button onClick={signOut}>
+          Sign Out
+        </Button>
+      </HStack>
     </Flex>
   );
 };

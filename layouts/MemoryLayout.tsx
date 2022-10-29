@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import MemoryNavbar from "~/components/navbar/MemoryNavbar";
 
 type Props = {
@@ -7,9 +7,17 @@ type Props = {
 };
 
 export const MemoryLayout = ({ children }: Props) => (
-  <MemoryNavbar>
-    <Flex justifyContent="center" p={8} width="full" height="full">
+  <>
+    <MemoryNavbar />
+    <Flex
+      direction="column"
+      alignItems="center"
+      px="24px"
+      py="16px"
+      height="90%"
+    >
       {children}
     </Flex>
-  </MemoryNavbar>
+    <Box>Footer</Box>
+  </>
 );

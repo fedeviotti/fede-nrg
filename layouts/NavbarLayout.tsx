@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Navbar from "~/components/navbar/Navbar";
 
 type Props = {
@@ -7,9 +7,17 @@ type Props = {
 };
 
 export const NavbarLayout = ({ children }: Props) => (
-  <Navbar>
-    <Flex justifyContent="center" p={8} width="full" height="full">
+  <>
+    <Navbar />
+    <Flex
+      direction="column"
+      alignItems="center"
+      px="24px"
+      py="16px"
+      height="90%"
+    >
       {children}
     </Flex>
-  </Navbar>
+    <Box>Footer</Box>
+  </>
 );
