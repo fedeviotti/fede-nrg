@@ -1,11 +1,20 @@
 import React from "react";
 import {
-  Button, Flex, Heading, useToast, Text, Input, Select,
+  Button,
+  Flex,
+  useToast,
+  Input,
+  Select,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton, ModalBody, ModalFooter,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 import {
-  Field, Form, Formik, FormikHelpers,
+  Field, Form, Formik,
 } from "formik";
 import { supabase } from "~/lib/initSupabaseClient";
 import { defaultToastOptions } from "~/lib/constants/defaultToastOptions";
@@ -36,7 +45,12 @@ const initialValues = {
   type: "",
 };
 
-export const VehicleForm = () => {
+type Props = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+export const VehicleForm = ({ isOpen, onClose }: Props) => {
   const { t } = useTranslation("common");
   const toast = useToast();
   const { user } = useAuth();
@@ -44,7 +58,6 @@ export const VehicleForm = () => {
 
   const handleSubmit = React.useCallback(async (
     values: VehicleFormValues,
-    helpers: FormikHelpers<VehicleFormValues>,
   ) => {
     const { data, error } = await supabase
       .from("vehicles")
@@ -67,7 +80,7 @@ export const VehicleForm = () => {
         ...defaultToastOptions,
       });
       await mutate(`/api/vehicles/${user?.id}`);
-      helpers.resetForm();
+      onClose();
     }
     if (error) {
       toast({
@@ -77,19 +90,11 @@ export const VehicleForm = () => {
         ...defaultToastOptions,
       });
     }
-  }, [mutate, t, toast, user?.id]);
+  }, [mutate, onClose, t, toast, user?.id]);
 
   return (
-    <Flex
-      p={6}
-      gap={4}
-      direction="column"
-      borderWidth="1px"
-      borderRadius="lg"
-      minWidth="400px"
-    >
-      <Heading as="h3" size="md">{t("garage.vehicle.create_form.title")}</Heading>
-      <Text fontSize="md">{t("garage.vehicle.create_form.description")}</Text>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -98,37 +103,48 @@ export const VehicleForm = () => {
       >
         {({ isSubmitting, isValid, dirty }) => (
           <Form id="create-vehicle">
-            <Flex direction="column" gap={4}>
-              <Field
-                as={Input}
-                name="name"
-                placeholder={t("garage.vehicle.create_form.field.name")}
-              />
-              <Field
-                as={Input}
-                name="description"
-                placeholder={t("garage.vehicle.create_form.field.description")}
-              />
-              <Field
-                as={Select}
-                name="type"
-                placeholder={t("garage.vehicle.create_form.field.type")}
-              >
-                <option value="7">Bike</option>
-                <option value="8">Car</option>
-              </Field>
-              <Button
-                type="submit"
-                form="create-vehicle"
-                isLoading={isSubmitting}
-                isDisabled={!isValid || !dirty}
-              >
-                {t("garage.vehicle.create_form.cta")}
-              </Button>
-            </Flex>
+            <ModalContent>
+              <ModalHeader>{t("garage.vehicle.create_form.title")}</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Flex direction="column" gap={4}>
+                  <Field
+                    as={Input}
+                    name="name"
+                    placeholder={t("garage.vehicle.create_form.field.name")}
+                  />
+                  <Field
+                    as={Input}
+                    name="description"
+                    placeholder={t("garage.vehicle.create_form.field.description")}
+                  />
+                  <Field
+                    as={Select}
+                    name="type"
+                    placeholder={t("garage.vehicle.create_form.field.type")}
+                  >
+                    <option value="7">Bike</option>
+                    <option value="8">Car</option>
+                  </Field>
+                </Flex>
+              </ModalBody>
+              <ModalFooter>
+                <Button mr={3} onClick={onClose}>
+                  Close
+                </Button>
+                <Button
+                  type="submit"
+                  form="create-vehicle"
+                  isLoading={isSubmitting}
+                  isDisabled={!isValid || !dirty}
+                >
+                  {t("garage.vehicle.create_form.cta")}
+                </Button>
+              </ModalFooter>
+            </ModalContent>
           </Form>
         )}
       </Formik>
-    </Flex>
+    </Modal>
   );
 };
