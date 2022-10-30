@@ -26,21 +26,14 @@
   },
   "garage": {
     "title": "Garage Manager",
-    "description": "Manage your vehicles",
+    "cta": "Add a vehicle",
     "vehicle": {
       "create_form": {
         "title": "Add Vehicle",
-        "description": "Add information about your vehicle",
         "field": {
           "name": "Nome",
           "description": "Description",
-          "type": "Type",
-          "brand": "Brand",
-          "model": "Model",
-          "year": "Year",
-          "plate": "Plate",
-          "color": "Color",
-          "notes": "notes"
+          "type": "Type"
         },
         "cta": "Add Vehicle",
         "toast": {
