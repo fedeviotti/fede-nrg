@@ -19,7 +19,7 @@ specifiers:
   eslint: 8.20.0
   eslint-config-next: 12.2.3
   formik: ^2.2.9
-  framer-motion: ^6
+  framer-motion: ^6.5.1
   i18next: ^21.9.1
   next: 12.2.3
   prisma: ^4.1.1
