@@ -25,22 +25,15 @@
     }
   },
   "garage": {
-    "title": "Garage Manager",
-    "description": "Gestisci i tuoi veicoli",
+    "title": "Gestione Veicoli",
+    "cta": "Aggiungi un veicolo",
     "vehicle": {
       "create_form": {
         "title": "Aggiungi Veicolo",
-        "description": "Inserisci le informazioni del veicolo",
         "field": {
           "name": "Nome",
           "description": "Descrizione",
-          "type": "Tipologia",
-          "brand": "Marca",
-          "model": "Modello",
-          "year": "Anno",
-          "plate": "Targa",
-          "color": "Colore",
-          "notes": "Note"
+          "type": "Tipologia"
         },
         "cta": "Aggiungi Veicolo",
         "toast": {
