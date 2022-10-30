@@ -3,22 +3,23 @@ import {
   Box, Center, Heading, Image, Stack, Tag, useColorModeValue,
 } from "@chakra-ui/react";
 import { ExtendedVehicle } from "~/types/garage/vehicle";
-import BIKE_IMAGE_DARK from "~/assets/garage/bicycle-9628-dark.svg";
-import BIKE_IMAGE_LIGHT from "~/assets/garage/bicycle-9628-light.svg";
+import { useVehicleCardImage } from "~/components/garage/hooks/useVehicleCardImage";
+import { useTagColor } from "~/components/garage/hooks/useTagColor";
 
 type Props = {
   vehicle: ExtendedVehicle;
 };
 
 export const VehicleCard = ({ vehicle }: Props) => {
-  const imageSrc = useColorModeValue(BIKE_IMAGE_LIGHT.src, BIKE_IMAGE_DARK.src);
+  const imageSrc = useVehicleCardImage(vehicle.type);
+  const tagColor = useTagColor(vehicle.type);
 
   return (
-    <Center px={8}>
+    <Center>
       <Box
         role="group"
-        p={8}
-        maxW="330px"
+        p={6}
+        minWidth="200px"
         w="full"
         bg={useColorModeValue("white", "gray.800")}
         pos="relative"
@@ -30,15 +31,16 @@ export const VehicleCard = ({ vehicle }: Props) => {
         <Image
           alt="Vehicle detail card"
           rounded="lg"
-          height={230}
-          width={282}
           objectFit="cover"
           src={imageSrc}
         />
         <Stack pt={8} align="center" spacing={6}>
-          <Tag size="md" key="md" variant="solid" colorScheme="brand" textTransform="uppercase">
-            {vehicle.type.name}
-          </Tag>
+          {vehicle.type.name
+            && (
+            <Tag size="md" key="md" variant="solid" colorScheme={tagColor} textTransform="uppercase">
+              {vehicle.type.name}
+            </Tag>
+            )}
           <Heading fontSize="2xl" fontFamily="body" fontWeight={500}>
             {vehicle.name}
           </Heading>

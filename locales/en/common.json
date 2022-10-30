@@ -15,12 +15,40 @@
       "no_account": "Don't have an account? Sign up"
     }
   },
+  "footer": "Made with ❤️ and ☕️ by FEDENRG",
   "common": {
     "loading": "Loading",
     "hide": "Hide",
     "show": "Show",
     "field": {
       "password": "Enter Password"
+    }
+  },
+  "garage": {
+    "title": "Garage Manager",
+    "description": "Manage your vehicles",
+    "vehicle": {
+      "create_form": {
+        "title": "Add Vehicle",
+        "description": "Add information about your vehicle",
+        "field": {
+          "name": "Nome",
+          "description": "Description",
+          "type": "Type",
+          "brand": "Brand",
+          "model": "Model",
+          "year": "Year",
+          "plate": "Plate",
+          "color": "Color",
+          "notes": "notes"
+        },
+        "cta": "Add Vehicle",
+        "toast": {
+          "title": "Add Vehicle",
+          "success": "Vehicle added successfully!",
+          "error": "Error adding vehicle"
+        }
+      }
     }
   }
 }
