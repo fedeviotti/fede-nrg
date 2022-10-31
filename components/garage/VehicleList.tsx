@@ -19,7 +19,7 @@ export const VehicleList = () => {
   if (!vehicles) return <Box>Loading ...</Box>;
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={16}>
+    <Grid templateColumns="repeat(4, 1fr)" gap={12}>
       {/* <pre>{JSON.stringify(vehicles, null, 2)}</pre> */}
       {vehicles?.map((vehicle) => (
         <GridItem key={vehicle.id}>

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Box, Center, Heading, Image, Stack, Tag, useColorModeValue,
+  Flex, Center, Heading, Image, Stack, Tag, useColorModeValue,
 } from "@chakra-ui/react";
 import { ExtendedVehicle } from "~/types/garage/vehicle";
 import { useVehicleCardImage } from "~/components/garage/hooks/useVehicleCardImage";
@@ -16,11 +16,12 @@ export const VehicleCard = ({ vehicle }: Props) => {
 
   return (
     <Center>
-      <Box
+      <Flex
+        direction="column"
+        alignItems="center"
         role="group"
         p={6}
         minWidth="200px"
-        w="full"
         bg={useColorModeValue("white", "gray.800")}
         pos="relative"
         zIndex={1}
@@ -29,6 +30,7 @@ export const VehicleCard = ({ vehicle }: Props) => {
         borderRadius="lg"
       >
         <Image
+          boxSize="150px"
           alt="Vehicle detail card"
           rounded="lg"
           objectFit="cover"
@@ -45,7 +47,7 @@ export const VehicleCard = ({ vehicle }: Props) => {
             {vehicle.name}
           </Heading>
         </Stack>
-      </Box>
+      </Flex>
     </Center>
   );
 };
