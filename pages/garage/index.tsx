@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Box, Button, Heading, useDisclosure,
+  Flex, Button, Heading, useDisclosure,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { VehicleList } from "~/components/garage/VehicleList";
@@ -18,11 +18,11 @@ const Garage = () => {
         <meta name="description" content={t("garage.title")} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box display="flex" flexDirection="column" gap="16px" alignItems="center">
+      <Flex flexDirection="column" gap={12} alignItems="center">
         <Heading as="h2" size="xl" fontWeight="semibold">{t("garage.title")}</Heading>
         <Button onClick={onOpen}>{t("garage.cta")}</Button>
         <VehicleList />
-      </Box>
+      </Flex>
       <VehicleForm isOpen={isOpen} onClose={onClose} />
     </>
   );
