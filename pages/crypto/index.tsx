@@ -1,5 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
+import enforceAuthenticated from "~/lib/enforceAuthenticated";
 
 const Crypto = () => {
   const [data, setData] = React.useState<any>(null);
@@ -27,3 +28,5 @@ const Crypto = () => {
 };
 
 export default Crypto;
+
+export const getServerSideProps = enforceAuthenticated("/crypto");

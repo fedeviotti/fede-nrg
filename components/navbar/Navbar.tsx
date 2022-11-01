@@ -41,6 +41,7 @@ const Navbar = () => {
       <HStack spacing={8}>
         <NextLink href="/dashboard">Dashboard</NextLink>
         <NextLink href="/garage">Garage</NextLink>
+        <NextLink href="/crypto">Crypto</NextLink>
         <NextLink href="/memory">Memory</NextLink>
         <Select
           placeholder="Language"
