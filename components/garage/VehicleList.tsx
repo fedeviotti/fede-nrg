@@ -15,7 +15,7 @@ export const VehicleList = () => {
   const ownerId: Key = user?.id || "";
   const { data: vehicles, error } = useSWR(`/api/vehicles/${ownerId}`, fetcher);
 
-  if (error) return <Box>An error occured.</Box>;
+  if (error) return <Box>An error occurred.</Box>;
   if (!vehicles) return <Box>Loading ...</Box>;
 
   return (
