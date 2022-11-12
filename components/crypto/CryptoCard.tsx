@@ -2,7 +2,7 @@ import React from "react";
 import {
   Center, Heading, Image, Stack, Tag, useColorModeValue, HStack,
 } from "@chakra-ui/react";
-import { CryptoCurrency } from "~/types/crypto/cryptoCurrency";
+import { CryptoCurrency } from "~/types/crypto/CryptoCurrency";
 
 type Props = {
   crypto: CryptoCurrency;

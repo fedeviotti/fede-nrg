@@ -25,6 +25,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# msw
+/public/mockServiceWorker.js
+
 # local env files
 .env
 .env*.local

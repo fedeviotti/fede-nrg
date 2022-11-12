@@ -28,6 +28,11 @@ import { NavbarLayout } from "~/layouts/NavbarLayout";
 import { AuthProvider } from "~/lib/context/AuthProvider";
 import { supabase } from "~/lib/initSupabaseClient";
 
+if (process.env.NODE_ENV === "development") {
+  // eslint-disable-next-line global-require
+  require("~/mocks");
+}
+
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
 };
