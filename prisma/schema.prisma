@@ -42,7 +42,7 @@ model Profiles {
   avatarUrl    String?        @map("avatar_url")
   website      String?
   vehicles     Vehicles[]
-  young_orders young_orders[] @relation("profilesToyoung_orders")
+  young_orders YoungOrders[] @relation("profilesToyoung_orders")
 
   @@map("profiles")
 }
