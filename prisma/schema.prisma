@@ -59,7 +59,7 @@ model Services {
 }
 
 model young_orders {
-  id                 Int    @id
+  id                 Int       @id
   base               String?
   quote              String?
   amount             Float?
