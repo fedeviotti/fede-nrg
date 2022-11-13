@@ -66,11 +66,11 @@ model YoungOrders {
   volume             Float?
   rate               Float?
   brokerage          Float?
-  brokerage_currency String?
+  brokerageCurrency  String? @map("brokerage_currency")
   side               String?
   date               DateTime? @db.Timestamptz(6)
-  owner_id           String?   @db.Uuid
-  profiles           Profiles? @relation("profilesToyoung_orders", fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ownerId            String?   @map("owner_id") @db.Uuid
+  profiles           Profiles? @relation("profilesToyoung_orders", fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@map("young_orders")
 }
