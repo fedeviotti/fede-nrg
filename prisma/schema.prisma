@@ -58,7 +58,7 @@ model Services {
   @@map("services")
 }
 
-model young_orders {
+model YoungOrders {
   id                 Int       @id
   base               String?
   quote              String?
@@ -71,4 +71,6 @@ model young_orders {
   date               DateTime? @db.Timestamptz(6)
   owner_id           String?   @db.Uuid
   profiles           Profiles? @relation("profilesToyoung_orders", fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("young_orders")
 }
