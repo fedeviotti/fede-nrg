@@ -47,7 +47,7 @@ const getSymbol = (base: string | null) => {
 const Orders = () => {
   const user = supabase.auth.user();
   const ownerId: Key = user?.id || "";
-  const { data: orders, error } = useSWR(`/api/cryptocurrency/orders/${ownerId}`, fetcher);
+  const { data: orders, error } = useSWR(`/api/crypto/orders/${ownerId}`, fetcher);
 
   if (error) return <Box>An error occurred.</Box>;
   if (!orders) return <Box>Loading ...</Box>;
