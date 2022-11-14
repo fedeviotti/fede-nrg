@@ -7,6 +7,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     where: {
       ownerId,
     },
+    orderBy: [
+      {
+        base: "desc",
+      }, {
+        date: "desc",
+      },
+    ],
   });
   res.json(orders);
 }
