@@ -42,7 +42,6 @@ model Profiles {
   avatarUrl    String?        @map("avatar_url")
   website      String?
   vehicles     Vehicles[]
-  young_orders YoungOrders[] @relation("profilesToyoung_orders")
 
   @@map("profiles")
 }
@@ -56,21 +55,4 @@ model Services {
   vehicle     Vehicles? @relation(fields: [vehicleId], references: [id])
 
   @@map("services")
-}
-
-model YoungOrders {
-  id                 Int       @id
-  base               String?
-  quote              String?
-  amount             Float?
-  volume             Float?
-  rate               Float?
-  brokerage          Float?
-  brokerageCurrency  String? @map("brokerage_currency")
-  side               String?
-  date               DateTime? @db.Timestamptz(6)
-  ownerId            String?   @map("owner_id") @db.Uuid
-  profiles           Profiles? @relation("profilesToyoung_orders", fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-
-  @@map("young_orders")
 }
