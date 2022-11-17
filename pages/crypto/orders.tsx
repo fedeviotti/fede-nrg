@@ -67,7 +67,7 @@ const Orders = () => {
                   fontSize="1.2em"
                   children={getSymbol(order.quote)}
                 />
-                <Input placeholder="Amount" value={order.amount} />
+                <Input placeholder="Amount" defaultValue={order.amount} />
               </InputGroup>
             )}
             {order.volume && (
@@ -78,11 +78,11 @@ const Orders = () => {
                   fontSize="1.2em"
                   children={getSymbol(order.base)}
                 />
-                <Input placeholder="Volume" value={order.volume} />
+                <Input placeholder="Volume" defaultValue={order.volume} />
               </InputGroup>
             )}
           </Stack>
-          {order.date && <Input value={new Date(order.date).toISOString()} />}
+          {order.date && <Input defaultValue={new Date(order.date).toISOString()} />}
         </Box>
       ))}
     </Stack>
