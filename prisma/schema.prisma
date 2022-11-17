@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,40 +8,40 @@ datasource db {
 }
 
 model Vehicles {
-  id            Int         @id @default(autoincrement())
-  createdAt     DateTime    @default(now()) @map("created_at")
-  updatedAt     DateTime    @updatedAt @map("updated_at")
-  name          String      @db.VarChar(255)
-  description   String?
-  isOwned       Boolean     @default(true) @map("is_owned")
-  type          VehicleTypes @relation(fields: [typeId], references: [id])
-  typeId        Int         @map("type_id")
-  services      Services[]
-  ownerId       String?     @db.Uuid @map("owner_id")
-  owner         Profiles?    @relation(fields: [ownerId], references: [id])
+  id          Int          @id @default(autoincrement())
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  name        String       @db.VarChar(255)
+  description String?
+  isOwned     Boolean      @default(true) @map("is_owned")
+  typeId      Int          @map("type_id")
+  ownerId     String?      @map("owner_id") @db.Uuid
+  owner       Profiles?    @relation(fields: [ownerId], references: [id])
+  type        VehicleTypes @relation(fields: [typeId], references: [id])
+  services    Services[]
 
   @@map("vehicles")
 }
 
 model VehicleTypes {
-  id            Int       @id @default(autoincrement())
-  createdAt     DateTime? @default(now()) @map("created_at")
-  name          String?   @db.VarChar
-  description   String?
-  vehicle       Vehicles[]
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime?  @default(now()) @map("created_at")
+  name        String?    @db.VarChar
+  description String?
+  vehicle     Vehicles[]
 
   @@map("vehicle_types")
 }
 
 model Profiles {
-  id        String      @id @db.Uuid
-  updatedAt DateTime?   @db.Timestamptz(6) @map("updated_at")
-  email     String      @unique
-  username  String?     @unique
-  bio       String?
-  avatarUrl String?     @map("avatar_url")
-  website   String?
-  vehicles  Vehicles[]
+  id           String         @id @db.Uuid
+  updatedAt    DateTime?      @map("updated_at") @db.Timestamptz(6)
+  email        String         @unique
+  username     String?        @unique
+  bio          String?
+  avatarUrl    String?        @map("avatar_url")
+  website      String?
+  vehicles     Vehicles[]
 
   @@map("profiles")
 }
@@ -54,8 +51,8 @@ model Services {
   createdAt   DateTime  @default(now()) @map("created_at")
   name        String?
   description String?
-  vehicle     Vehicles?  @relation(fields: [vehicleId], references: [id])
-  vehicleId   Int? @map("vehicle_id")
+  vehicleId   Int?      @map("vehicle_id")
+  vehicle     Vehicles? @relation(fields: [vehicleId], references: [id])
 
   @@map("services")
 }

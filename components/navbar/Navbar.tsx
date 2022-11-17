@@ -42,6 +42,7 @@ const Navbar = () => {
         <NextLink href="/dashboard">Dashboard</NextLink>
         <NextLink href="/garage">Garage</NextLink>
         <NextLink href="/crypto">Crypto</NextLink>
+        <NextLink href="/crypto/young">Young</NextLink>
         <NextLink href="/memory">Memory</NextLink>
         <Select
           placeholder="Language"

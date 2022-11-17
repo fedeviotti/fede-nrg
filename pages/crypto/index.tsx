@@ -11,7 +11,7 @@ const fetcher = (url: string) => axios.get<undefined, CryptoCurrencyListingsResp
 
 const Crypto = () => {
   const { data, error } = useSWR(
-    "/api/cryptocurrency/listings",
+    "/api/crypto/listings",
     fetcher,
   );
 
