@@ -26,8 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       timestamp: Math.floor(Date.now() / 1000),
       recvWindow: 100000,
     };
-    // const response = await fetch("https://api.youngplatform.com/api/v3/orderHistory?pair=BTC-EUR", {
-    const response = await fetch("https://swapi.dev/api/people/1", {
+    // https://swapi.dev/api/people/1
+    const response = await fetch("https://api.youngplatform.com/api/v3/orderHistory?pair=BTC-EUR", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
